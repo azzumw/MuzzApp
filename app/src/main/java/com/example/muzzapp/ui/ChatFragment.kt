@@ -1,4 +1,4 @@
-package com.example.muzzapp
+package com.example.muzzapp.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

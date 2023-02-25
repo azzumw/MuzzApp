@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:background="@color/blue_gray"
         android:clipToPadding="true"
         app:layout_constraintBottom_toTopOf="@id/linear_container_for_message_box"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:reverseLayout="true"
         tools:itemCount="16"
+        android:scrollbars="vertical"
         tools:listitem="@layout/chat_list_item" />
 
 

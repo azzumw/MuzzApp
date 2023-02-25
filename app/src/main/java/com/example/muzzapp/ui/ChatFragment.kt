@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.example.muzzapp.adapter.MessageAdapter
+import com.example.muzzapp.data.Datasource
 import com.example.muzzapp.databinding.FragmentChatBinding
 
 
@@ -26,6 +28,11 @@ class ChatFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val recyclerView = binding.chatRecyclerView
+        val data = Datasource().loadMessages()
+        val adapter = MessageAdapter(requireContext(),data)
+        recyclerView.adapter = adapter
     }
 
     override fun onDestroy() {

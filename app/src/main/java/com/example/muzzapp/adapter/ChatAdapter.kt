@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.muzzapp.R
 import com.example.muzzapp.model.Message
 
-class MessageAdapter:
-    RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
+class ChatAdapter:
+    RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
 
     var messages:List<Message> = listOf<Message>()
     set(value) {

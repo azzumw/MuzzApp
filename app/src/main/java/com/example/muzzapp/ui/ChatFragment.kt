@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.muzzapp.adapter.MessageAdapter
+import com.example.muzzapp.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
 import com.example.muzzapp.model.Message
 
@@ -30,7 +30,7 @@ class ChatFragment : Fragment() {
 
         val recyclerView = binding.chatRecyclerView
 
-        val adapter = MessageAdapter()
+        val adapter = ChatAdapter()
         recyclerView.adapter = adapter
 
 

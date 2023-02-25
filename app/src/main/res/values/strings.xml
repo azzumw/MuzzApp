@@ -14,5 +14,7 @@
     <string name="affirmation9">Things will unfold at precisely the right time.</string>
     <string name="affirmation10">I will be present in all the moments that this day brings.</string>
     <string name="dummy_message_text">Does 7pm work for you? I\'ve got to go pick up my little brother first from a party.</string>
+    <string name="hint_message_box">Message</string>
+    <string name="cd_send_button">Send Button</string>
 
 </resources>

@@ -11,16 +11,16 @@
         android:id="@+id/chat_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:background="@color/blue_gray"
-        android:clipToPadding="true"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/linear_container_for_message_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:reverseLayout="true"
+        app:stackFromEnd="true"
         tools:itemCount="16"
-        tools:listitem="@layout/chat_list_item" />
+        android:scrollbars="vertical"
+        tools:listitem="@layout/chat_list_item_me" />
 
 
     <LinearLayout
@@ -51,7 +51,8 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif-medium"
-                android:hint="Message"
+                android:inputType="text"
+                android:hint="@string/hint_message_box"
                 android:paddingHorizontal="16dp"
                 android:textSize="20sp" />
         </com.google.android.material.card.MaterialCardView>
@@ -62,6 +63,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/white"
+            android:contentDescription="@string/cd_send_button"
             android:src="@drawable/baseline_send_24" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

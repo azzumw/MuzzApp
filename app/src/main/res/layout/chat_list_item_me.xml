@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:padding="8dp">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/message_cardview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,14 +22,15 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:background="@color/pink"
-            android:padding="8dp"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="16dp"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:maxEms="12"
             android:breakStrategy="high_quality"
             tools:text="@string/dummy_message_text" />
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

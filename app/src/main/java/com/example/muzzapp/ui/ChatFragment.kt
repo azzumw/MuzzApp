@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import com.example.muzzapp.adapter.MessageAdapter
-import com.example.muzzapp.data.Datasource
 import com.example.muzzapp.databinding.FragmentChatBinding
+import com.example.muzzapp.model.Message
 
 
 class ChatFragment : Fragment() {
@@ -30,9 +29,26 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = binding.chatRecyclerView
-        val data = Datasource().loadMessages()
-        val adapter = MessageAdapter(requireContext(),data)
+
+        val adapter = MessageAdapter()
         recyclerView.adapter = adapter
+
+
+
+        binding.sendButton.setOnClickListener {
+            val isTextNotBlank =  binding.editMessagebox.text.isNotBlank()
+            if(!isTextNotBlank) return@setOnClickListener
+
+            //create message instance
+            //add new message to the list
+            //update the list
+            val txt = binding.editMessagebox.text.toString()
+
+            adapter.messages += Message(txt)
+
+            binding.editMessagebox.text.clear()
+            recyclerView.scrollToPosition(adapter.messages.lastIndex)
+        }
     }
 
     override fun onDestroy() {

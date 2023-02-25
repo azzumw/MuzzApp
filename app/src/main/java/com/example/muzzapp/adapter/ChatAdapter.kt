@@ -25,14 +25,16 @@ class ChatAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val view:View
 
         val adapterLayout = LayoutInflater.from(parent.context)
-        view = if (viewType == SENT){
-            adapterLayout.inflate(R.layout.chat_list_item_me, parent, false)
-        }else {
-            adapterLayout.inflate(R.layout.chat_list_item_other, parent, false)
+
+        val layout = if (viewType == SENT) {
+            R.layout.chat_list_item_me
+        } else {
+            R.layout.chat_list_item_other
         }
+
+        val view = adapterLayout.inflate(layout, parent, false)
 
         return MessageViewHolder(view)
     }
@@ -45,6 +47,7 @@ class ChatAdapter :
         holder.messageTextView.text = currentMessage.messageText
     }
 
-    override fun getItemViewType(position: Int) = if (messages[position].sent == 0) SENT else RECEIVED
+    override fun getItemViewType(position: Int) =
+        if (messages[position].sent == 0) SENT else RECEIVED
 
 }

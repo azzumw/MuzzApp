@@ -44,7 +44,7 @@ class ChatFragment : Fragment() {
             //update the list
             val txt = binding.editMessagebox.text.toString()
 
-            adapter.messages += Message(txt,0)
+            adapter.messages += Message(txt)
 
             binding.editMessagebox.text.clear()
 
@@ -56,4 +56,5 @@ class ChatFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
 }

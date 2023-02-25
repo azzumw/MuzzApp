@@ -8,24 +8,33 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.muzzapp.R
 import com.example.muzzapp.model.Message
 
-class ChatAdapter:
+private const val SENT = 0
+private const val RECEIVED = 1
+
+class ChatAdapter :
     RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
 
-    var messages:List<Message> = listOf<Message>()
-    set(value) {
-        field = value
-//        notifyDataSetChanged()
-        notifyItemInserted(messages.lastIndex)
-    }
+    var messages: List<Message> = listOf<Message>()
+        set(value) {
+            field = value
+            notifyItemInserted(messages.lastIndex)
+        }
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val messageTextView : TextView = view.findViewById(R.id.chat_text_bubble_item)
+        val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.chat_list_item_me,parent,false)
+        val view:View
 
-        return MessageViewHolder(adapterLayout)
+        val adapterLayout = LayoutInflater.from(parent.context)
+        view = if (viewType == SENT){
+            adapterLayout.inflate(R.layout.chat_list_item_me, parent, false)
+        }else {
+            adapterLayout.inflate(R.layout.chat_list_item_other, parent, false)
+        }
+
+        return MessageViewHolder(view)
     }
 
     override fun getItemCount(): Int = messages.size
@@ -35,4 +44,7 @@ class ChatAdapter:
 
         holder.messageTextView.text = currentMessage.messageText
     }
+
+    override fun getItemViewType(position: Int) = if (messages[position].sent == 0) SENT else RECEIVED
+
 }

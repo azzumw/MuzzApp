@@ -44,9 +44,10 @@ class ChatFragment : Fragment() {
             //update the list
             val txt = binding.editMessagebox.text.toString()
 
-            adapter.messages += Message(txt)
+            adapter.messages += Message(txt,0)
 
             binding.editMessagebox.text.clear()
+
             recyclerView.scrollToPosition(adapter.messages.lastIndex)
         }
     }

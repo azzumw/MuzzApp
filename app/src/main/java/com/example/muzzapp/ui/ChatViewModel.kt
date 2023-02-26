@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 
 class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
 
-
     var messages: LiveData<List<Message>?> = chatDao.getAllMessages()
 
     init {
@@ -19,7 +18,6 @@ class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
 
     private fun getAllMessages() {
         messages = chatDao.getAllMessages()
-
     }
 
     fun insertMessage(message: Message) {

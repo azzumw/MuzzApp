@@ -14,7 +14,7 @@ class ChatAdapter :
     var messages: List<Message> = listOf()
         set(value) {
             field = value
-            notifyItemInserted(itemCount.minus(1))
+            notifyDataSetChanged()
         }
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {

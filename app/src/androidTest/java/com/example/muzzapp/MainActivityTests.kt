@@ -6,6 +6,9 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.appcompat.widget.Toolbar
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
+import org.hamcrest.CoreMatchers.allOf
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Assert.*
@@ -27,5 +30,17 @@ class MainActivityTests {
         scenario.close()
     }
 
+    @Test
+    fun typeHello_displaysHelloInChat() {
+        val scenario = launch(MainActivity::class.java)
 
+        onView(withId(R.id.edit_messagebox)).perform(typeText("Hello"), closeSoftKeyboard())
+
+        onView(withId(R.id.send_button)).perform(click())
+
+        onView(withId(R.id.chat_recycler_view))
+            .check(matches(hasDescendant(withText("Hello"))))
+
+        scenario.close()
+    }
 }

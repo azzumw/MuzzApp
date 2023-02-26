@@ -1,5 +1,6 @@
 package com.example.muzzapp.ui
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -9,10 +10,9 @@ import kotlinx.coroutines.launch
 
 class ChatViewModel(private val chatDao: ChatDao):ViewModel() {
 
+    val messages = chatDao.getAllMessages()
     init {
-        fetchAllMessages()
     }
-    private fun fetchAllMessages() = chatDao.getAllMessages()
 
     fun insertMessage(message: Message){
        viewModelScope.launch {

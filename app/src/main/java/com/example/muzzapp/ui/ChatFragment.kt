@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.muzzapp.ChatApplication
+import com.example.muzzapp.R
 import com.example.muzzapp.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
 import com.example.muzzapp.model.Message
@@ -28,8 +30,12 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentChatBinding.inflate(inflater)
+        _binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chat,container,false)
+//        _binding = FragmentChatBinding.inflate(inflater)
         // Inflate the layout for this fragment
+        binding.lifecycleOwner = this.viewLifecycleOwner
+        binding.viewModel = chatViewModel
+
         return binding.root
     }
 

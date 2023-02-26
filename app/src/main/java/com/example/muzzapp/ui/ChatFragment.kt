@@ -61,7 +61,7 @@ class ChatFragment : Fragment() {
             chatViewModel.insertMessage(
                 Message(
                     txt,
-                    sender = 1,
+                    sender = deliveryChannel,
                     Calendar.getInstance().timeInMillis
                 )
             )
@@ -86,6 +86,14 @@ class ChatFragment : Fragment() {
         return when (item.itemId) {
             R.id.clear_chat_id -> {
                 chatViewModel.clear()
+                true
+            }
+            R.id.switch_user_id -> {
+                deliveryChannel = if(deliveryChannel==0){
+                    1
+                }else{
+                    0
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

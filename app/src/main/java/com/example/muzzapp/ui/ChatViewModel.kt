@@ -8,7 +8,15 @@ import com.example.muzzapp.database.ChatDao
 import com.example.muzzapp.model.Message
 import kotlinx.coroutines.launch
 
+enum class Delivery{
+    SENT,RECEIVED
+}
+
+var deliveryChannel:Int = 0
 class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
+
+
+
 
     var messages: LiveData<List<Message>?> = chatDao.getAllMessages()
 

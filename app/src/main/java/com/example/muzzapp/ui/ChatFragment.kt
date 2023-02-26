@@ -12,7 +12,6 @@ import com.example.muzzapp.databinding.FragmentChatBinding
 import com.example.muzzapp.model.Message
 import java.util.Calendar
 
-
 class ChatFragment : Fragment() {
 
     private var _binding: FragmentChatBinding? = null
@@ -35,9 +34,9 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_chat, container, false)
 
-        // Inflate the layout for this fragment
         binding.lifecycleOwner = this.viewLifecycleOwner
         binding.viewModel = chatViewModel
 
@@ -68,9 +67,7 @@ class ChatFragment : Fragment() {
             )
 
 //            adapter.messages += Message(txt, timestamp = Calendar.getInstance().timeInMillis)
-
             binding.editMessagebox.text.clear()
-
         }
 
         chatViewModel.messages.observe(viewLifecycleOwner) {
@@ -93,7 +90,6 @@ class ChatFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-
     }
 
     override fun onDestroy() {

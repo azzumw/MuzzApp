@@ -16,7 +16,7 @@ interface ChatDao {
     suspend fun insertMessage(message: Message)
 
     @Query("select * FROM message")
-    fun getAllMessages():LiveData<List<Message>>
+    fun getAllMessages():LiveData<List<Message>?>
 
     @Query("delete from message")
     suspend fun clearMessages()

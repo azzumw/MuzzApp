@@ -17,11 +17,16 @@ class ChatAdapter :
     var messages: List<Message> = listOf<Message>()
         set(value) {
             field = value
-            notifyItemInserted(messages.lastIndex)
+            notifyDataSetChanged()
+//            notifyItemInserted(messages.lastIndex)
         }
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
+    }
+
+    fun submitList(list:List<Message>){
+        messages = list
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {

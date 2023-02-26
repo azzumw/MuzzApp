@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.muzzapp.ChatApplication
 import com.example.muzzapp.R
 import com.example.muzzapp.adapter.ChatAdapter
@@ -56,15 +57,20 @@ class ChatFragment : Fragment() {
             //update the list
             val txt = binding.editMessagebox.text.toString()
 
-            //add message to the data
-//            chatViewModel.insertMessage()
 
-            adapter.messages += Message(txt, timestamp = Calendar.getInstance().timeInMillis)
+            //add message to the data
+            chatViewModel.insertMessage(Message(txt, sender = 0,Calendar.getInstance().timeInMillis))
+
+//            adapter.messages += Message(txt, timestamp = Calendar.getInstance().timeInMillis)
 
             binding.editMessagebox.text.clear()
 
             recyclerView.scrollToPosition(adapter.messages.lastIndex)
         }
+
+        chatViewModel.messages .observe(viewLifecycleOwner, Observer {
+            if(it !=null) adapter.submitList(it)
+        })
     }
 
     override fun onDestroy() {

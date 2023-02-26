@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="actionOverflowButtonStyle">@style/actionOverflowButtonStyle</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -19,5 +20,10 @@
 
 <!--    Light theme-->
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- This style is where you define the tint color of your overflow menu button -->
+    <style name="actionOverflowButtonStyle" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/black</item>
+    </style>
 
 </resources>

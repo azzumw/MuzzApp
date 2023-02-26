@@ -1,10 +1,9 @@
 package com.example.muzzapp.ui
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -26,6 +25,10 @@ class ChatFragment : Fragment() {
             .database.chatDao())
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +39,7 @@ class ChatFragment : Fragment() {
         // Inflate the layout for this fragment
         binding.lifecycleOwner = this.viewLifecycleOwner
         binding.viewModel = chatViewModel
+
 
         return binding.root
     }
@@ -71,6 +75,10 @@ class ChatFragment : Fragment() {
         chatViewModel.messages .observe(viewLifecycleOwner, Observer {
             if(it !=null) adapter.submitList(it)
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu,menu)
     }
 
     override fun onDestroy() {

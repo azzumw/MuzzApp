@@ -16,12 +16,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
+            app:menu="@menu/main_menu"
+            android:theme="@style/Theme.MuzzApp"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/black"
             app:title="@string/app_name"/>

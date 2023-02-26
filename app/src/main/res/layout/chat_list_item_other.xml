@@ -19,14 +19,7 @@
 
         <TextView
             android:id="@+id/chat_text_bubble_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/blue_gray"
-            android:breakStrategy="high_quality"
-            android:maxEms="12"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            style="@style/chat_bubble_received"
             tools:text="@string/dummy_message_text" />
 
     </androidx.cardview.widget.CardView>

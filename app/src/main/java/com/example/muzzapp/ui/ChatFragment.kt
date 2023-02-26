@@ -71,11 +71,13 @@ class ChatFragment : Fragment() {
 
             binding.editMessagebox.text.clear()
 
-            recyclerView.scrollToPosition(adapter.messages.lastIndex)
         }
 
         chatViewModel.messages.observe(viewLifecycleOwner) {
-            if (it != null) adapter.submitList(it)
+            it?.let {
+                adapter.messages = it
+            }
+            recyclerView.scrollToPosition(adapter.messages.lastIndex)
         }
     }
 

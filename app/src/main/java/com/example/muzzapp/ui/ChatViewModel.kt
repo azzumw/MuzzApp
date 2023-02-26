@@ -1,16 +1,12 @@
 package com.example.muzzapp.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.muzzapp.database.ChatDao
 import com.example.muzzapp.model.Message
 import kotlinx.coroutines.launch
-import java.util.Calendar
-import java.util.Date
 
 class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
 
@@ -31,6 +27,8 @@ class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
             chatDao.insertMessage(message)
         }
     }
+
+    fun clear() = viewModelScope.launch { chatDao.clearMessages() }
 }
 
 class ChatViewModelFactory(private val chatDao: ChatDao) : ViewModelProvider.Factory {

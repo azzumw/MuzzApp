@@ -3,7 +3,6 @@ package com.example.muzzapp.ui
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -72,13 +71,24 @@ class ChatFragment : Fragment() {
             recyclerView.scrollToPosition(adapter.messages.lastIndex)
         }
 
-        chatViewModel.messages .observe(viewLifecycleOwner, Observer {
-            if(it !=null) adapter.submitList(it)
-        })
+        chatViewModel.messages .observe(viewLifecycleOwner) {
+            if (it != null) adapter.submitList(it)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.clear_chat_id -> {
+                chatViewModel.clear()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
     }
 
     override fun onDestroy() {

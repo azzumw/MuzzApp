@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">MuzzApp</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <string name="affirmation1">I am strong.</string>
     <string name="affirmation2">I believe in myself.</string>
     <string name="affirmation3">Each day is a new opportunity to grow and be a better version of myself.</string>
@@ -13,8 +10,12 @@
     <string name="affirmation8">I have the courage to follow my heart.</string>
     <string name="affirmation9">Things will unfold at precisely the right time.</string>
     <string name="affirmation10">I will be present in all the moments that this day brings.</string>
+
     <string name="dummy_message_text">Does 7pm work for you? I\'ve got to go pick up my little brother first from a party.</string>
     <string name="hint_message_box">Message</string>
     <string name="cd_send_button">Send Button</string>
+    <string name="clear_chat_menu_item">Clear Chat</string>
+    <string name="switch_user_menu_item">Switch User</string>
+
 
 </resources>

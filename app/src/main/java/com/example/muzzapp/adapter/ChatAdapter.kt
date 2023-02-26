@@ -8,16 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.muzzapp.R
 import com.example.muzzapp.model.Message
 
-private const val SENT = 0
-private const val RECEIVED = 1
-
 class ChatAdapter :
     RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
 
-    var messages: List<Message> = listOf<Message>()
+    var messages: List<Message> = listOf()
         set(value) {
             field = value
-            notifyItemInserted(messages.lastIndex)
+            notifyDataSetChanged()
         }
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -28,7 +25,7 @@ class ChatAdapter :
 
         val adapterLayout = LayoutInflater.from(parent.context)
 
-        val layout = if (viewType == SENT) {
+        val layout = if (viewType == 0) {
             R.layout.chat_list_item_me
         } else {
             R.layout.chat_list_item_other
@@ -47,7 +44,6 @@ class ChatAdapter :
         holder.messageTextView.text = currentMessage.messageText
     }
 
-    override fun getItemViewType(position: Int) =
-        if (messages[position].sender == 0) SENT else RECEIVED
+    override fun getItemViewType(position: Int) = messages[position].sender
 
 }

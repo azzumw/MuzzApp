@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,12 +16,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
+            app:menu="@menu/main_menu"
+            android:theme="@style/Theme.MuzzApp"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/black"
             app:title="@string/app_name"/>
@@ -36,4 +38,4 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph"
         tools:layout="@layout/fragment_chat" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

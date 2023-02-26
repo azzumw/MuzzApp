@@ -19,15 +19,7 @@
 
         <TextView
             android:id="@+id/chat_text_bubble_item"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:background="@color/pink"
-            android:paddingVertical="8dp"
-            android:paddingHorizontal="16dp"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:maxEms="12"
-            android:breakStrategy="high_quality"
+            style="@style/chat_bubble_sent"
             tools:text="@string/dummy_message_text" />
 
     </com.google.android.material.card.MaterialCardView>

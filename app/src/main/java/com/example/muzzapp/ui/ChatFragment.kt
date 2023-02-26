@@ -5,15 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import com.example.muzzapp.ChatApplication
 import com.example.muzzapp.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
 import com.example.muzzapp.model.Message
+import java.util.Calendar
 
 
 class ChatFragment : Fragment() {
 
     private var _binding:FragmentChatBinding? = null
     private val binding get() = _binding!!
+
+    private val chatViewModel:ChatViewModel  by viewModels{
+        ChatViewModelFactory((requireActivity().application as ChatApplication)
+            .database.chatDao())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +41,6 @@ class ChatFragment : Fragment() {
         val adapter = ChatAdapter()
         recyclerView.adapter = adapter
 
-
-
         binding.sendButton.setOnClickListener {
             val isTextNotBlank =  binding.editMessagebox.text.isNotBlank()
             if(!isTextNotBlank) return@setOnClickListener
@@ -44,7 +50,10 @@ class ChatFragment : Fragment() {
             //update the list
             val txt = binding.editMessagebox.text.toString()
 
-            adapter.messages += Message(txt)
+            //add message to the data
+//            chatViewModel.insertMessage()
+
+            adapter.messages += Message(txt, timestamp = Calendar.getInstance().timeInMillis)
 
             binding.editMessagebox.text.clear()
 

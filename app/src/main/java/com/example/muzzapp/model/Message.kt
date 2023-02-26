@@ -1,3 +1,13 @@
 package com.example.muzzapp.model
 
-data class Message(val messageText:String,var sent:Int = 0)
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+
+@Entity(tableName = "message")
+data class Message(
+    val messageText: String,
+    var sender: Int = 0,
+    @PrimaryKey val timestamp: Long
+)

@@ -48,6 +48,6 @@ class ChatAdapter :
     }
 
     override fun getItemViewType(position: Int) =
-        if (messages[position].sent == 0) SENT else RECEIVED
+        if (messages[position].sender == 0) SENT else RECEIVED
 
 }

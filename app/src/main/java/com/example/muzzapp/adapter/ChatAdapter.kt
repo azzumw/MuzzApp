@@ -11,10 +11,10 @@ import com.example.muzzapp.model.Message
 class ChatAdapter :
     RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
 
-    var messages: List<Message> = listOf<Message>()
+    var messages: List<Message> = listOf()
         set(value) {
             field = value
-            notifyDataSetChanged()
+            notifyItemInserted(itemCount.minus(1))
         }
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {

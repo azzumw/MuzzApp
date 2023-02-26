@@ -29,6 +29,7 @@
             android:layout_marginTop="56dp"
             tools:itemCount="16"
             android:scrollbars="vertical"
+            app:listData="@{viewModel.messages}"
             tools:listitem="@layout/chat_list_item_me" />
 
 

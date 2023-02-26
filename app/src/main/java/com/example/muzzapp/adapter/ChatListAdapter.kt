@@ -25,6 +25,11 @@ class ChatListAdapter : ListAdapter<Message, ChatListAdapter.ChatListItemViewHol
         return ChatListItemViewHolder(view)
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return getItem(position).sender
+//        return super.getItemViewType(position)
+    }
+
     override fun onBindViewHolder(holder: ChatListItemViewHolder, position: Int) {
         val currentMessage = getItem(position)
         holder.bind(currentMessage)

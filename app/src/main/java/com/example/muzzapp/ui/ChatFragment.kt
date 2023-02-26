@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.example.muzzapp.ChatApplication
 import com.example.muzzapp.R
 import com.example.muzzapp.adapter.ChatAdapter
+import com.example.muzzapp.adapter.ChatListAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
 import com.example.muzzapp.model.Message
 import java.util.Calendar
@@ -49,7 +50,9 @@ class ChatFragment : Fragment() {
         val recyclerView = binding.chatRecyclerView
 
         val adapter = ChatAdapter()
+//        val adapter2 = ChatListAdapter()
         recyclerView.adapter = adapter
+//        recyclerView.adapter = adapter2
 
         binding.sendButton.setOnClickListener {
             val isTextNotBlank = binding.editMessagebox.text.isNotBlank()
@@ -70,12 +73,19 @@ class ChatFragment : Fragment() {
             binding.editMessagebox.text.clear()
         }
 
-        chatViewModel.messages.observe(viewLifecycleOwner) {
-            it?.let {
-                adapter.messages = it
-            }
-            recyclerView.scrollToPosition(adapter.messages.lastIndex)
-        }
+//        chatViewModel.messages.observe(viewLifecycleOwner) {
+//            it?.let {
+//                adapter.messages = it
+//            }
+//            recyclerView.scrollToPosition(adapter.messages.lastIndex)
+//        }
+
+//        chatViewModel.messages.observe(viewLifecycleOwner) {
+//            it?.let {
+//                adapter2.submitList(it)
+//            }
+//            recyclerView.scrollToPosition(adapter2.currentList.lastIndex)
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -18,15 +18,10 @@ class ChatAdapter :
         set(value) {
             field = value
             notifyDataSetChanged()
-//            notifyItemInserted(messages.lastIndex)
         }
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
-    }
-
-    fun submitList(list:List<Message>){
-        messages = list
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {

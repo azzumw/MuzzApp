@@ -11,5 +11,4 @@ fun bindChatRecyclerView(recyclerView: RecyclerView,messages:List<Message>?){
         adapter.messages = it
         recyclerView.scrollToPosition(it.lastIndex)
     }
-//    recyclerView.scrollToPosition(messages?.lastIndex)
 }

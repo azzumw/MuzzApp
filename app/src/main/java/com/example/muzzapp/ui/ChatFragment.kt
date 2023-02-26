@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import com.example.muzzapp.ChatApplication
 import com.example.muzzapp.R
 import com.example.muzzapp.adapter.ChatAdapter
-import com.example.muzzapp.adapter.ChatListAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
 import com.example.muzzapp.model.Message
 import java.util.Calendar
@@ -49,10 +48,7 @@ class ChatFragment : Fragment() {
 
         val recyclerView = binding.chatRecyclerView
 
-        val adapter = ChatAdapter()
-//        val adapter2 = ChatListAdapter()
-        recyclerView.adapter = adapter
-//        recyclerView.adapter = adapter2
+        recyclerView.adapter = ChatAdapter()
 
         binding.sendButton.setOnClickListener {
             val isTextNotBlank = binding.editMessagebox.text.isNotBlank()
@@ -69,7 +65,6 @@ class ChatFragment : Fragment() {
                 )
             )
 
-//            adapter.messages += Message(txt, timestamp = Calendar.getInstance().timeInMillis)
             binding.editMessagebox.text.clear()
         }
 

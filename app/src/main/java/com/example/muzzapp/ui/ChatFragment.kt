@@ -54,7 +54,7 @@ class ChatFragment : Fragment() {
 
 //            val txt = binding.editMessagebox.text.toString()
 
-            //add message to the data
+        //add message to the data
 //            chatViewModel.insertMessage(
 //                Message(
 //                    txt,
@@ -93,9 +93,9 @@ class ChatFragment : Fragment() {
                 true
             }
             R.id.switch_user_id -> {
-                deliveryChannel = if(deliveryChannel==0){
+                deliveryChannel = if (deliveryChannel == 0) {
                     1
-                }else{
+                } else {
                     0
                 }
                 true

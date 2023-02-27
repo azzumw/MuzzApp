@@ -10,10 +10,6 @@ import com.example.muzzapp.model.Message
 import kotlinx.coroutines.launch
 import java.util.*
 
-enum class Delivery {
-    SENT, RECEIVED
-}
-
 var deliveryChannel: Int = 0
 
 class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
@@ -25,11 +21,6 @@ class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
     init {
         getAllMessages()
     }
-
-
-    private fun validateInput(): Boolean =
-        messageText.value.isNullOrBlank()
-
 
     private fun getAllMessages() {
         messages = chatDao.getAllMessages()
@@ -47,6 +38,9 @@ class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
 
         messageText.value = ""
     }
+
+    private fun validateInput(): Boolean =
+        messageText.value.isNullOrBlank()
 
     fun clear() = viewModelScope.launch { chatDao.clearMessages() }
 }

@@ -8,21 +8,28 @@
     android:layout_width="match_parent"
     android:padding="8dp">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/message_cardview"
+    <TextView
+        android:id="@+id/chat_text_bubble_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="18dp"
+        android:maxEms="14"
+        style="@style/chat_bubble_sent"
+        android:background="@drawable/bg_send_chat_bubble"
+        tools:text="@string/dummy_message_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
-            android:id="@+id/chat_text_bubble_item"
-            style="@style/chat_bubble_sent"
-            tools:text="@string/dummy_message_text" />
-
-    </com.google.android.material.card.MaterialCardView>
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/message_cardview"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+<!--        -->
+<!--    </com.google.android.material.card.MaterialCardView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

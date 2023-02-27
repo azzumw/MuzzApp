@@ -9,8 +9,6 @@ import com.example.muzzapp.ChatApplication
 import com.example.muzzapp.R
 import com.example.muzzapp.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
-import com.example.muzzapp.model.Message
-import java.util.Calendar
 
 class ChatFragment : Fragment() {
 
@@ -50,23 +48,23 @@ class ChatFragment : Fragment() {
 
         recyclerView.adapter = ChatAdapter()
 
-        binding.sendButton.setOnClickListener {
-            val isTextNotBlank = binding.editMessagebox.text.isNotBlank()
-            if (!isTextNotBlank) return@setOnClickListener
+//        binding.sendButton.setOnClickListener {
+//            val isTextNotBlank = binding.editMessagebox.text.isNotBlank()
+//            if (!isTextNotBlank) return@setOnClickListener
 
-            val txt = binding.editMessagebox.text.toString()
+//            val txt = binding.editMessagebox.text.toString()
 
             //add message to the data
-            chatViewModel.insertMessage(
-                Message(
-                    txt,
-                    sender = deliveryChannel,
-                    Calendar.getInstance().timeInMillis
-                )
-            )
+//            chatViewModel.insertMessage(
+//                Message(
+//                    txt,
+//                    sender = deliveryChannel,
+//                    Calendar.getInstance().timeInMillis
+//                )
+//            )
 
-            binding.editMessagebox.text.clear()
-        }
+//            binding.editMessagebox.text.clear()
+//        }
 
 //        chatViewModel.messages.observe(viewLifecycleOwner) {
 //            it?.let {
@@ -81,6 +79,7 @@ class ChatFragment : Fragment() {
 //            }
 //            recyclerView.scrollToPosition(adapter2.currentList.lastIndex)
 //        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

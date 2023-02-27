@@ -1,12 +1,14 @@
 package com.example.muzzapp.ui
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.muzzapp.database.ChatDao
 import com.example.muzzapp.model.Message
 import kotlinx.coroutines.launch
+import java.util.*
 
 enum class Delivery {
     SENT, RECEIVED
@@ -18,18 +20,32 @@ class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
 
     var messages: LiveData<List<Message>?> = chatDao.getAllMessages()
 
+    val messageText = MutableLiveData<String>()
+
     init {
         getAllMessages()
     }
+
+
+    private fun validateInput(): Boolean =
+        messageText.value.isNullOrBlank()
+
 
     private fun getAllMessages() {
         messages = chatDao.getAllMessages()
     }
 
-    fun insertMessage(message: Message) {
-        viewModelScope.launch {
-            chatDao.insertMessage(message)
+    fun insertMessage() {
+        if (!validateInput()) {
+            val message =
+                Message(messageText.value!!, deliveryChannel, Calendar.getInstance().timeInMillis)
+
+            viewModelScope.launch {
+                chatDao.insertMessage(message)
+            }
         }
+
+        messageText.value = ""
     }
 
     fun clear() = viewModelScope.launch { chatDao.clearMessages() }

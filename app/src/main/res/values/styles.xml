@@ -19,7 +19,6 @@
     </style>
 
     <style name="chat_bubble_received" parent="chat_bubble_style">
-        <item name="android:background">@color/blue_gray</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

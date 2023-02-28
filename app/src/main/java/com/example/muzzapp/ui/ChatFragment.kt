@@ -46,7 +46,7 @@ class ChatFragment : Fragment() {
 
         val recyclerView = binding.chatRecyclerView
 
-        recyclerView.adapter = ChatAdapter()
+        recyclerView.adapter = ChatAdapter(requireContext())
 
 //        binding.sendButton.setOnClickListener {
 //            val isTextNotBlank = binding.editMessagebox.text.isNotBlank()

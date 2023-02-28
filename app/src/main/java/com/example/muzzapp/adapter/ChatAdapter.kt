@@ -13,6 +13,7 @@ import com.example.muzzapp.R
 import com.example.muzzapp.model.Message
 
 private const val TWENTY_SECONDS = 20000
+
 class ChatAdapter(private val context: Context) :
     RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
 
@@ -62,9 +63,17 @@ class ChatAdapter(private val context: Context) :
                 when (getItemViewType(position)) {
                     //if first message in the chat, add a tailwind depending on the view-type
                     0 -> holder.messageTextView.background =
-                        context.resources.getDrawable(R.drawable.bg_send_chat_bubble_tail)
+                        ResourcesCompat.getDrawable(
+                            context.resources,
+                            R.drawable.bg_send_chat_bubble_tail,
+                            null
+                        )
                     1 -> holder.messageTextView.background =
-                        context.resources.getDrawable(R.drawable.bg_received_chat_bubble_tail)
+                        ResourcesCompat.getDrawable(
+                            context.resources,
+                            R.drawable.bg_received_chat_bubble_tail,
+                            null
+                        )
                 }
             }
             else -> {
@@ -73,28 +82,43 @@ class ChatAdapter(private val context: Context) :
                     //if within 20 seconds of previous message then normal chat bubble is inserted
                     if ((currentMessage.timestamp - lastMessage.timestamp) <= TWENTY_SECONDS) {
                         when (getItemViewType(position)) {
-                            0 -> holder.messageTextView.background =
-                                context.resources.getDrawable(R.drawable.bg_send_chat_bubble)
+                            0 -> holder.messageTextView.background = ResourcesCompat.getDrawable(
+                                context.resources,
+                                R.drawable.bg_send_chat_bubble,
+                                null
+                            )
                             1 -> holder.messageTextView.background =
-                                context.resources.getDrawable(R.drawable.bg_received_chat_bubble)
+                                ResourcesCompat.getDrawable(
+                                    context.resources,
+                                    R.drawable.bg_received_chat_bubble,
+                                    null
+                                )
                         }
                     } else {
                         when (getItemViewType(position)) {
                             0 -> holder.messageTextView.background =
-                                context.resources.getDrawable(R.drawable.bg_send_chat_bubble_tail)
+                                ResourcesCompat.getDrawable(
+                                    context.resources,
+                                    R.drawable.bg_send_chat_bubble_tail,
+                                    null
+                                )
                             1 -> holder.messageTextView.background =
-                                context.resources.getDrawable(R.drawable.bg_received_chat_bubble_tail)
+                                ResourcesCompat.getDrawable(
+                                    context.resources,
+                                    R.drawable.bg_received_chat_bubble_tail,
+                                    null
+                                )
                         }
                     }
 
-                    //else - add a tail to chat bubbles
 
                 } else {
+                    //else - add a tail to chat bubbles
                     when (getItemViewType(position)) {
                         0 -> holder.messageTextView.background =
-                            context.resources.getDrawable(R.drawable.bg_send_chat_bubble_tail)
+                            ResourcesCompat.getDrawable(context.resources,R.drawable.bg_send_chat_bubble_tail,null)
                         1 -> holder.messageTextView.background =
-                            context.resources.getDrawable(R.drawable.bg_received_chat_bubble_tail)
+                            ResourcesCompat.getDrawable(context.resources,R.drawable.bg_received_chat_bubble_tail,null)
                     }
                 }
             }

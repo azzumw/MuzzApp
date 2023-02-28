@@ -14,12 +14,33 @@
     </style>
 
     <style name="chat_bubble_sent" parent="chat_bubble_style">
-        <item name="android:background">@color/pink</item>
+<!--        <item name="android:background">@color/pink</item>-->
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="chat_bubble_received" parent="chat_bubble_style">
-        <item name="android:background">@color/blue_gray</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+<!--    <style name="TailCardView" parent="@style/Widget.MaterialComponents.CardView">-->
+<!--        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>-->
+<!--    </style>-->
+
+<!--    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">-->
+<!--        <item name="cornerFamily">rounded</item>-->
+<!--        <item name="cornerSizeTopRight">28dp</item>-->
+<!--        <item name="cornerSizeTopLeft">28dp</item>-->
+<!--        <item name="cornerSizeBottomRight">0dp</item>-->
+<!--        <item name="cornerSizeBottomLeft">28dp</item>-->
+<!--    </style>-->
+
+    <style name="ShapeAppearanceOverlay.CardView" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">34%</item>
+        <item name="cornerSizeTopRight">34%</item>
+        <item name="cornerSizeTopLeft">34%</item>
+    </style>
+
 </resources>

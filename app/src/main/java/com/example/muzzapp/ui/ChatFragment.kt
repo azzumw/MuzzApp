@@ -48,38 +48,6 @@ class ChatFragment : Fragment() {
 
         recyclerView.adapter = ChatAdapter(requireContext())
 
-//        binding.sendButton.setOnClickListener {
-//            val isTextNotBlank = binding.editMessagebox.text.isNotBlank()
-//            if (!isTextNotBlank) return@setOnClickListener
-
-//            val txt = binding.editMessagebox.text.toString()
-
-        //add message to the data
-//            chatViewModel.insertMessage(
-//                Message(
-//                    txt,
-//                    sender = deliveryChannel,
-//                    Calendar.getInstance().timeInMillis
-//                )
-//            )
-
-//            binding.editMessagebox.text.clear()
-//        }
-
-//        chatViewModel.messages.observe(viewLifecycleOwner) {
-//            it?.let {
-//                adapter.messages = it
-//            }
-//            recyclerView.scrollToPosition(adapter.messages.lastIndex)
-//        }
-
-//        chatViewModel.messages.observe(viewLifecycleOwner) {
-//            it?.let {
-//                adapter2.submitList(it)
-//            }
-//            recyclerView.scrollToPosition(adapter2.currentList.lastIndex)
-//        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

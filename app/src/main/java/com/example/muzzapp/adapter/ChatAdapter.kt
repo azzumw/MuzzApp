@@ -1,8 +1,6 @@
 package com.example.muzzapp.adapter
 
 import android.content.Context
-import android.content.res.Resources
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,9 +23,6 @@ class ChatAdapter(private val context: Context) :
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
-        fun bind() {
-
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -40,8 +35,6 @@ class ChatAdapter(private val context: Context) :
             R.layout.chat_list_item_other
         }
 
-        Log.e("OnCreateViewholder", messages.size.toString())
-        Log.e("OnCreateView-Itemcountr", itemCount.toString())
         val view = adapterLayout.inflate(layout, parent, false)
 
         return MessageViewHolder(view)
@@ -52,75 +45,20 @@ class ChatAdapter(private val context: Context) :
         val currentMessage = messages[position]
         holder.messageTextView.text = currentMessage.messageText
 
+        val isLastMessage = messages.lastIndex == position
 
-        Log.e("Adapter-Current", currentMessage.messageText)
-        Log.e("Adapter-pos", position.toString())
-//        Log.e("Adapter-LM", lastMessage.messageText)
-//        Log.e("Adapter-LM-Pos", (position-1).toString())
+        if (isLastMessage) {
+            setChatBubbleWithTail(getItemViewType(position), holder)
+        } else {
+            val nextMessage = messages[position + 1]
+            val isDifferentSender = nextMessage.sender != currentMessage.sender
+            val isTimeLapseOver20 =
+                (nextMessage.timestamp - currentMessage.timestamp) > TWENTY_SECONDS
 
-        when (position) {
-            0 -> {
-                when (getItemViewType(position)) {
-                    //if first message in the chat, add a tailwind depending on the view-type
-                    0 -> holder.messageTextView.background =
-                        ResourcesCompat.getDrawable(
-                            context.resources,
-                            R.drawable.bg_send_chat_bubble_tail,
-                            null
-                        )
-                    1 -> holder.messageTextView.background =
-                        ResourcesCompat.getDrawable(
-                            context.resources,
-                            R.drawable.bg_received_chat_bubble_tail,
-                            null
-                        )
-                }
-            }
-            else -> {
-                val lastMessage = messages[position - 1]
-                if (lastMessage.sender == currentMessage.sender) {
-                    //if within 20 seconds of previous message then normal chat bubble is inserted
-                    if ((currentMessage.timestamp - lastMessage.timestamp) <= TWENTY_SECONDS) {
-                        when (getItemViewType(position)) {
-                            0 -> holder.messageTextView.background = ResourcesCompat.getDrawable(
-                                context.resources,
-                                R.drawable.bg_send_chat_bubble,
-                                null
-                            )
-                            1 -> holder.messageTextView.background =
-                                ResourcesCompat.getDrawable(
-                                    context.resources,
-                                    R.drawable.bg_received_chat_bubble,
-                                    null
-                                )
-                        }
-                    } else {
-                        when (getItemViewType(position)) {
-                            0 -> holder.messageTextView.background =
-                                ResourcesCompat.getDrawable(
-                                    context.resources,
-                                    R.drawable.bg_send_chat_bubble_tail,
-                                    null
-                                )
-                            1 -> holder.messageTextView.background =
-                                ResourcesCompat.getDrawable(
-                                    context.resources,
-                                    R.drawable.bg_received_chat_bubble_tail,
-                                    null
-                                )
-                        }
-                    }
-
-
-                } else {
-                    //else - add a tail to chat bubbles
-                    when (getItemViewType(position)) {
-                        0 -> holder.messageTextView.background =
-                            ResourcesCompat.getDrawable(context.resources,R.drawable.bg_send_chat_bubble_tail,null)
-                        1 -> holder.messageTextView.background =
-                            ResourcesCompat.getDrawable(context.resources,R.drawable.bg_received_chat_bubble_tail,null)
-                    }
-                }
+            if (isDifferentSender || isTimeLapseOver20) {
+                setChatBubbleWithTail(getItemViewType(position), holder)
+            } else {
+                setChatBubbleWithoutTail(getItemViewType(position), holder)
             }
         }
     }
@@ -129,4 +67,29 @@ class ChatAdapter(private val context: Context) :
 
     override fun getItemViewType(position: Int) = messages[position].sender
 
+    private fun setChatBubbleWithTail(viewType: Int, holder: MessageViewHolder) =
+        if (viewType == 0) {
+            setDrawable(holder, R.drawable.bg_send_chat_bubble_tail)
+        } else {
+            setDrawable(holder, R.drawable.bg_received_chat_bubble_tail)
+        }
+
+    private fun setChatBubbleWithoutTail(viewType: Int, holder: MessageViewHolder) {
+        if (viewType == 0) {
+            setDrawable(holder, R.drawable.bg_send_chat_bubble)
+        } else {
+            setDrawable(holder, R.drawable.bg_received_chat_bubble)
+        }
+    }
+
+    private fun setDrawable(holder: MessageViewHolder, resourceId: Int) {
+        holder.messageTextView.background = ResourcesCompat.getDrawable(
+            context.resources,
+            resourceId,
+            null
+        )
+    }
+
 }
+
+

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="chat_bubble_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -14,7 +13,7 @@
     </style>
 
     <style name="chat_bubble_sent" parent="chat_bubble_style">
-<!--        <item name="android:background">@color/pink</item>-->
+        <!--        <item name="android:background">@color/pink</item>-->
         <item name="android:textColor">@color/white</item>
     </style>
 
@@ -22,17 +21,6 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-<!--    <style name="TailCardView" parent="@style/Widget.MaterialComponents.CardView">-->
-<!--        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>-->
-<!--    </style>-->
-
-<!--    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">-->
-<!--        <item name="cornerFamily">rounded</item>-->
-<!--        <item name="cornerSizeTopRight">28dp</item>-->
-<!--        <item name="cornerSizeTopLeft">28dp</item>-->
-<!--        <item name="cornerSizeBottomRight">0dp</item>-->
-<!--        <item name="cornerSizeBottomLeft">28dp</item>-->
-<!--    </style>-->
 
     <style name="ShapeAppearanceOverlay.CardView" parent="">
         <item name="cornerFamilyBottomLeft">rounded</item>
@@ -42,5 +30,4 @@
         <item name="cornerSizeTopRight">34%</item>
         <item name="cornerSizeTopLeft">34%</item>
     </style>
-
 </resources>

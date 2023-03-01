@@ -40,8 +40,6 @@ class ChatAdapter(private val context: Context) :
             R.layout.chat_list_item_other
         }
 
-        Log.e("OnCreateViewholder", messages.size.toString())
-        Log.e("OnCreateView-Itemcountr", itemCount.toString())
         val view = adapterLayout.inflate(layout, parent, false)
 
         return MessageViewHolder(view)
@@ -52,81 +50,62 @@ class ChatAdapter(private val context: Context) :
         val currentMessage = messages[position]
         holder.messageTextView.text = currentMessage.messageText
 
+        // has a tail
+        val isLastMessage = messages.lastIndex == position
+        //sent by the other user
+        //message after it was sent 20s afterwards
 
-        Log.e("Adapter-Current", currentMessage.messageText)
-        Log.e("Adapter-pos", position.toString())
-//        Log.e("Adapter-LM", lastMessage.messageText)
-//        Log.e("Adapter-LM-Pos", (position-1).toString())
+        if (isLastMessage) {
+            //has a tail
+            setChatBubbleWithTail(getItemViewType(position), holder)
 
-        when (position) {
-            0 -> {
-                when (getItemViewType(position)) {
-                    //if first message in the chat, add a tailwind depending on the view-type
-                    0 -> holder.messageTextView.background =
-                        ResourcesCompat.getDrawable(
-                            context.resources,
-                            R.drawable.bg_send_chat_bubble_tail,
-                            null
-                        )
-                    1 -> holder.messageTextView.background =
-                        ResourcesCompat.getDrawable(
-                            context.resources,
-                            R.drawable.bg_received_chat_bubble_tail,
-                            null
-                        )
-                }
-            }
-            else -> {
-                val lastMessage = messages[position - 1]
-                if (lastMessage.sender == currentMessage.sender) {
-                    //if within 20 seconds of previous message then normal chat bubble is inserted
-                    if ((currentMessage.timestamp - lastMessage.timestamp) <= TWENTY_SECONDS) {
-                        when (getItemViewType(position)) {
-                            0 -> holder.messageTextView.background = ResourcesCompat.getDrawable(
-                                context.resources,
-                                R.drawable.bg_send_chat_bubble,
-                                null
-                            )
-                            1 -> holder.messageTextView.background =
-                                ResourcesCompat.getDrawable(
-                                    context.resources,
-                                    R.drawable.bg_received_chat_bubble,
-                                    null
-                                )
-                        }
-                    } else {
-                        when (getItemViewType(position)) {
-                            0 -> holder.messageTextView.background =
-                                ResourcesCompat.getDrawable(
-                                    context.resources,
-                                    R.drawable.bg_send_chat_bubble_tail,
-                                    null
-                                )
-                            1 -> holder.messageTextView.background =
-                                ResourcesCompat.getDrawable(
-                                    context.resources,
-                                    R.drawable.bg_received_chat_bubble_tail,
-                                    null
-                                )
-                        }
-                    }
+        } else {
+            val nextMessage = messages[position + 1]
 
-
+            if (nextMessage.sender == currentMessage.sender) {
+                //if next message sent after 20 seconds, then this message has a tail
+                if ((nextMessage.timestamp - currentMessage.timestamp) > TWENTY_SECONDS) {
+                    setChatBubbleWithTail(getItemViewType(position), holder)
                 } else {
-                    //else - add a tail to chat bubbles
-                    when (getItemViewType(position)) {
-                        0 -> holder.messageTextView.background =
-                            ResourcesCompat.getDrawable(context.resources,R.drawable.bg_send_chat_bubble_tail,null)
-                        1 -> holder.messageTextView.background =
-                            ResourcesCompat.getDrawable(context.resources,R.drawable.bg_received_chat_bubble_tail,null)
-                    }
+                    setChatBubbleWithoutTail(getItemViewType(position), holder)
                 }
+
+            } else {
+                setChatBubbleWithTail(getItemViewType(position), holder)
             }
         }
+
     }
 
     override fun getItemCount(): Int = messages.size
 
     override fun getItemViewType(position: Int) = messages[position].sender
 
+    private fun setChatBubbleWithTail(viewType: Int, holder: MessageViewHolder) =
+        if (viewType == 0) {
+            setDrawable(holder,R.drawable.bg_send_chat_bubble_tail)
+        } else {
+            setDrawable(holder,R.drawable.bg_received_chat_bubble_tail)
+        }
+
+    private fun setChatBubbleWithoutTail(viewType: Int, holder: MessageViewHolder) {
+        if (viewType == 0) {
+            setDrawable(holder,R.drawable.bg_send_chat_bubble)
+        } else {
+            setDrawable(holder, R.drawable.bg_received_chat_bubble)
+        }
+    }
+
+
+
+    private fun setDrawable(holder: MessageViewHolder, resourceId: Int) {
+        holder.messageTextView.background = ResourcesCompat.getDrawable(
+            context.resources,
+            resourceId,
+            null
+        )
+    }
+
 }
+
+

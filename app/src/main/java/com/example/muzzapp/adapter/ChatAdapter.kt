@@ -45,28 +45,20 @@ class ChatAdapter(private val context: Context) :
         val currentMessage = messages[position]
         holder.messageTextView.text = currentMessage.messageText
 
-        // has a tail
         val isLastMessage = messages.lastIndex == position
-        //sent by the other user
-        //message after it was sent 20s afterwards
 
         if (isLastMessage) {
-            //has a tail
             setChatBubbleWithTail(getItemViewType(position), holder)
-
         } else {
             val nextMessage = messages[position + 1]
+            val isDifferentSender = nextMessage.sender != currentMessage.sender
+            val isTimeLapseOver20 =
+                (nextMessage.timestamp - currentMessage.timestamp) > TWENTY_SECONDS
 
-            if (nextMessage.sender == currentMessage.sender) {
-                //if next message sent after 20 seconds, then this message has a tail
-                if ((nextMessage.timestamp - currentMessage.timestamp) > TWENTY_SECONDS) {
-                    setChatBubbleWithTail(getItemViewType(position), holder)
-                } else {
-                    setChatBubbleWithoutTail(getItemViewType(position), holder)
-                }
-
-            } else {
+            if (isDifferentSender || isTimeLapseOver20) {
                 setChatBubbleWithTail(getItemViewType(position), holder)
+            } else {
+                setChatBubbleWithoutTail(getItemViewType(position), holder)
             }
         }
     }
@@ -77,14 +69,14 @@ class ChatAdapter(private val context: Context) :
 
     private fun setChatBubbleWithTail(viewType: Int, holder: MessageViewHolder) =
         if (viewType == 0) {
-            setDrawable(holder,R.drawable.bg_send_chat_bubble_tail)
+            setDrawable(holder, R.drawable.bg_send_chat_bubble_tail)
         } else {
-            setDrawable(holder,R.drawable.bg_received_chat_bubble_tail)
+            setDrawable(holder, R.drawable.bg_received_chat_bubble_tail)
         }
 
     private fun setChatBubbleWithoutTail(viewType: Int, holder: MessageViewHolder) {
         if (viewType == 0) {
-            setDrawable(holder,R.drawable.bg_send_chat_bubble)
+            setDrawable(holder, R.drawable.bg_send_chat_bubble)
         } else {
             setDrawable(holder, R.drawable.bg_received_chat_bubble)
         }

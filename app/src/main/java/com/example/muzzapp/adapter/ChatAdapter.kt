@@ -1,8 +1,6 @@
 package com.example.muzzapp.adapter
 
 import android.content.Context
-import android.content.res.Resources
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,7 +72,6 @@ class ChatAdapter(private val context: Context) :
                 setChatBubbleWithTail(getItemViewType(position), holder)
             }
         }
-
     }
 
     override fun getItemCount(): Int = messages.size
@@ -95,8 +92,6 @@ class ChatAdapter(private val context: Context) :
             setDrawable(holder, R.drawable.bg_received_chat_bubble)
         }
     }
-
-
 
     private fun setDrawable(holder: MessageViewHolder, resourceId: Int) {
         holder.messageTextView.background = ResourcesCompat.getDrawable(

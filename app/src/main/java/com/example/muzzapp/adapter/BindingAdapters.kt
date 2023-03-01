@@ -1,6 +1,5 @@
 package com.example.muzzapp.adapter
 
-import android.util.Log
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.muzzapp.model.Message

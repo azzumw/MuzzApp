@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="actionOverflowButtonStyle">@style/actionOverflowButtonStyle</item>
+        <item name="windowActionModeOverlay">true</item>
+
 
     </style>
 

@@ -42,7 +42,11 @@ class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
     private fun validateInput(): Boolean =
         messageText.value.isNullOrBlank()
 
-    fun clear() = viewModelScope.launch { chatDao.clearMessages() }
+    fun clear() = viewModelScope.launch {
+        if (!messages.value.isNullOrEmpty()) {
+            chatDao.clearMessages()
+        }
+    }
 }
 
 class ChatViewModelFactory(private val chatDao: ChatDao) : ViewModelProvider.Factory {

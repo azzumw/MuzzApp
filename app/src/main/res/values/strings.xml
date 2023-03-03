@@ -16,6 +16,7 @@
     <string name="cd_send_button">Send Button</string>
     <string name="clear_chat_menu_item">Clear Chat</string>
     <string name="switch_user_menu_item">Switch User</string>
+    <string name="date_time"> <em>%s</em> %s</string>
 
 
 </resources>

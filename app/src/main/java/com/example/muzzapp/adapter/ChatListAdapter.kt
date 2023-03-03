@@ -37,13 +37,13 @@ class ChatListAdapter : ListAdapter<Message, ChatListAdapter.ChatListItemViewHol
 
     class ChatListItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         private val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
-        fun bind(message: Message){
+        fun bind(message: Message) {
             messageTextView.text = message.messageText
         }
     }
 
-    companion object{
-        private val DiffCallback = object : DiffUtil.ItemCallback<Message>(){
+    companion object {
+        private val DiffCallback = object : DiffUtil.ItemCallback<Message>() {
             override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
                 return oldItem === newItem
             }

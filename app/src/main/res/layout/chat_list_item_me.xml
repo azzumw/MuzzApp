@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:padding="8dp">
 
     <TextView
+        android:id="@+id/timeStamp_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/chat_text_bubble_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/chat_text_bubble_item"
+        style="@style/chat_bubble_sent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxEms="14"
-        style="@style/chat_bubble_sent"
-        android:backgroundTint="@color/pink"
         android:background="@drawable/bg_send_chat_bubble"
-        tools:text="@string/dummy_message_text"
+        android:backgroundTint="@color/pink"
+        android:maxEms="14"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-<!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:id="@+id/message_cardview"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent">-->
-<!--        -->
-<!--    </com.google.android.material.card.MaterialCardView>-->
+        app:layout_constraintTop_toBottomOf="@id/timeStamp_tv"
+        tools:text="@string/dummy_message_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

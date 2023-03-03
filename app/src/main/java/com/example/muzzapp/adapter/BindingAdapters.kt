@@ -5,10 +5,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.muzzapp.model.Message
 
 @BindingAdapter("listData")
-fun bindChatRecyclerView(recyclerView: RecyclerView,messages:List<Message>?){
+fun bindChatRecyclerView(recyclerView: RecyclerView, messages: List<Message>?) {
     val adapter = recyclerView.adapter as ChatAdapter
     messages?.let {
         adapter.messages = it
-        recyclerView.scrollToPosition(it.lastIndex)
+        recyclerView.scrollToPosition(it.lastIndex + 1)
     }
 }

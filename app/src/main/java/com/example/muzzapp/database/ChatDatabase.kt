@@ -6,11 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.muzzapp.model.Message
 
-
 @Database(entities = [Message::class], version = 1, exportSchema = false)
 abstract class ChatDatabase : RoomDatabase() {
 
-    abstract fun chatDao() : ChatDao
+    abstract fun chatDao(): ChatDao
 
     companion object {
         @Volatile
@@ -21,7 +20,8 @@ abstract class ChatDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context,
                     ChatDatabase::class.java,
-                    "chat_database")
+                    "chat_database"
+                )
                     .build()
                 INSTANCE = instance
 

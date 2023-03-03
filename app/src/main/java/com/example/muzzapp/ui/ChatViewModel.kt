@@ -10,21 +10,24 @@ import com.example.muzzapp.model.Message
 import kotlinx.coroutines.launch
 import java.util.*
 
-var deliveryChannel: Int = 0
+var deliveryChannel: Int = User.ME.ordinal
+
+enum class User {
+    ME, YOU;
+
+    val switch: User
+        get() = when (this) {
+            ME -> YOU
+            YOU -> ME
+        }
+}
+
 
 class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
 
-    var messages: LiveData<List<Message>?> = chatDao.getAllMessages()
+    val messages: LiveData<List<Message>?> = chatDao.getAllMessages()
 
     val messageText = MutableLiveData<String>()
-
-    init {
-        getAllMessages()
-    }
-
-    private fun getAllMessages() {
-        messages = chatDao.getAllMessages()
-    }
 
     fun insertMessage() {
         if (!validateInput()) {
@@ -39,10 +42,13 @@ class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
         messageText.value = ""
     }
 
-    private fun validateInput(): Boolean =
-        messageText.value.isNullOrBlank()
+    private fun validateInput() = messageText.value.isNullOrBlank()
 
-    fun clear() = viewModelScope.launch { chatDao.clearMessages() }
+    fun clear() = viewModelScope.launch {
+        if (!messages.value.isNullOrEmpty()) {
+            chatDao.clearMessages()
+        }
+    }
 }
 
 class ChatViewModelFactory(private val chatDao: ChatDao) : ViewModelProvider.Factory {

@@ -61,10 +61,10 @@ class ChatFragment : Fragment() {
                 true
             }
             R.id.switch_user_id -> {
-                deliveryChannel = if (deliveryChannel == 0) {
-                    1
-                } else {
-                    0
+                deliveryChannel = if(deliveryChannel == User.ME.ordinal){
+                    User.ME.switch.ordinal
+                }else{
+                    User.YOU.switch.ordinal
                 }
                 true
             }

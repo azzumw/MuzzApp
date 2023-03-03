@@ -20,8 +20,8 @@
             android:id="@+id/day_textview"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
+            android:layout_marginEnd="8dp"
             android:textStyle="bold"
-            android:text="Thurs"
             android:gravity="center_horizontal|center_vertical"
             tools:text="Thursday" />
 

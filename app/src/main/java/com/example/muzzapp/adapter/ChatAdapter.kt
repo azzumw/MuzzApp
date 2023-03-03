@@ -64,16 +64,28 @@ class ChatAdapter(private val context: Context) :
         return if (viewType == 2) DataAndTimeSectionViewHolder(view) else MessageViewHolder(view)
     }
 
-    private fun formatDate(time:Long):String{
+    private fun formatDate(time: Long): Pair<String, String> {
         val format = SimpleDateFormat("EEE HH:mm")
-        return format.format(time)
+        val formattedDate = format.format(time)
+        return Pair(formattedDate.substringBefore(' '), formattedDate.substringAfter(' '))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if (getItemViewType(position) == 2) {
-            (holder as DataAndTimeSectionViewHolder).dayTextView.text =
-                formatDate(Calendar.getInstance().timeInMillis)
+            val time = Calendar.getInstance().timeInMillis
+            val fDayTime = formatDate(time)
+            (holder as DataAndTimeSectionViewHolder).dayTextView.text = fDayTime.first
+            holder.timeTextView.text = fDayTime.second
+
+            if (messages.isNotEmpty()) {
+
+                val f2DayTime = formatDate(messages[0].timestamp)
+                holder.dayTextView.text = f2DayTime.first
+                holder.timeTextView.text = f2DayTime.second
+            }
+
+
             Log.e("$TAG onBindView posD:", position.toString())
         } else {
             val currentMessage = messages[position - 1]

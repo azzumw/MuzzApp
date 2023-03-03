@@ -39,6 +39,7 @@ class ChatAdapter(private val context: Context) :
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
         val layout = view.findViewById<View>(R.id.date_time_layout)
+
     }
 
     class DataAndTimeSectionViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -52,14 +53,14 @@ class ChatAdapter(private val context: Context) :
 
         val adapterLayout = LayoutInflater.from(parent.context)
 
-        val layout1 = when (viewType) {
+        val layout = when (viewType) {
             0 -> R.layout.chat_list_item_me
             1 -> R.layout.chat_list_item_other
             2 -> R.layout.date_time_section_list_item
             else -> throw java.lang.ClassCastException("Unknown View Type: $viewType")
         }
 
-        val view = adapterLayout.inflate(layout1, parent, false)
+        val view = adapterLayout.inflate(layout, parent, false)
 
         return if (viewType == 2) DataAndTimeSectionViewHolder(view) else MessageViewHolder(view)
     }
@@ -73,19 +74,17 @@ class ChatAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if (getItemViewType(position) == 2) {
-            val time = Calendar.getInstance().timeInMillis
-            val fDayTime = formatDate(time)
 
-            displayDayAndTime(holder as DataAndTimeSectionViewHolder,fDayTime)
+            val currentMessageTimeStamp = formatDate(Calendar.getInstance().timeInMillis)
+
+            displayDayAndTime(holder as DataAndTimeSectionViewHolder, currentMessageTimeStamp)
 
             if (messages.isNotEmpty()) {
 
-                val f2DayTime = formatDate(messages.first().timestamp)
-                displayDayAndTime(holder, f2DayTime)
+                val firstMessageTimeStamp = formatDate(messages.first().timestamp)
+                displayDayAndTime(holder, firstMessageTimeStamp)
             }
 
-
-            Log.e("$TAG onBindView posD:", position.toString())
         } else {
             val currentMessage = messages[position - 1]
             (holder as MessageViewHolder).messageTextView.text = currentMessage.messageText
@@ -99,11 +98,13 @@ class ChatAdapter(private val context: Context) :
 
             if (isLastMessage) {
                 setChatBubbleWithTail(getItemViewType(position), holder)
+
             } else {
                 val nextMessage = messages[position]
                 val isDifferentSender = nextMessage.sender != currentMessage.sender
                 val isTimeLapseOver20 =
                     (nextMessage.timestamp - currentMessage.timestamp) > TWENTY_SECONDS
+
 
                 if (isDifferentSender || isTimeLapseOver20) {
                     setChatBubbleWithTail(getItemViewType(position), holder)
@@ -111,6 +112,7 @@ class ChatAdapter(private val context: Context) :
                 } else {
                     setChatBubbleWithoutTail(getItemViewType(position), holder)
                 }
+
             }
 
         }
@@ -118,39 +120,28 @@ class ChatAdapter(private val context: Context) :
 
     private fun displayDayAndTime(
         holder: DataAndTimeSectionViewHolder,
-        f2DayTime: Pair<String, String>
+        dayTime: Pair<String, String>
     ) {
-        holder.dayTextView.text = f2DayTime.first
-        holder.timeTextView.text = f2DayTime.second
+        holder.dayTextView.text = dayTime.first
+        holder.timeTextView.text = dayTime.second
     }
 
     override fun getItemCount(): Int {
         return messages.size + 1
     }
 
-    override fun getItemViewType(position: Int): Int {
-        if (position == 0) {
-            Log.e("$TAG getItemView pos", position.toString())
-            return 2
-        }
+    override fun getItemViewType(position: Int): Int =
+        if (position == 0) 2 else messages[position - 1].sender
 
-//        if(position > 1){
-//            if((messages[position-1].timestamp-messages[position-2].timestamp)> FIVE_SECONDS){
-//                return 2
-//            } else return messages[position-1].sender
-//
-//        }
-        return messages[position - 1].sender
-    }
 
-    private fun setChatBubbleWithTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) =
+    private fun setChatBubbleWithTail(viewType: Int, holder: MessageViewHolder) =
         if (viewType == 0) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble_tail)
         } else {
             setDrawable(holder, R.drawable.bg_received_chat_bubble_tail)
         }
 
-    private fun setChatBubbleWithoutTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) {
+    private fun setChatBubbleWithoutTail(viewType: Int, holder: MessageViewHolder) {
         if (viewType == 0) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble)
         } else {
@@ -158,7 +149,7 @@ class ChatAdapter(private val context: Context) :
         }
     }
 
-    private fun setDrawable(holder: ChatAdapter.MessageViewHolder, resourceId: Int) {
+    private fun setDrawable(holder: MessageViewHolder, resourceId: Int) {
         holder.messageTextView.background = ResourcesCompat.getDrawable(
             context.resources,
             resourceId,

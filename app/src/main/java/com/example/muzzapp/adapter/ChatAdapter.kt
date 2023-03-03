@@ -80,7 +80,7 @@ class ChatAdapter(private val context: Context) :
 
             if (messages.isNotEmpty()) {
 
-                val f2DayTime = formatDate(messages[0].timestamp)
+                val f2DayTime = formatDate(messages.first().timestamp)
                 holder.dayTextView.text = f2DayTime.first
                 holder.timeTextView.text = f2DayTime.second
             }

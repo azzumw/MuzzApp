@@ -108,7 +108,7 @@ class ChatAdapter(private val context: Context) :
             if (holder.layoutPosition >= 2) {
 
                 val isTimeLapseOver5 =
-                    (currentMessage.timestamp - messages[position - 2].timestamp) > 30000
+                    (currentMessage.timestamp - messages[position - 2].timestamp) > ONE_HOUR
 
                 if (isTimeLapseOver5) {
                     val time = formatDate(currentMessage.timestamp)

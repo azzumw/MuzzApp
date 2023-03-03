@@ -30,7 +30,7 @@ class ChatAdapter(private val context: Context) :
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
-        val layout:TextView = view.findViewById(R.id.timeStamp_tv)
+        val layout: TextView = view.findViewById(R.id.timeStamp_tv)
     }
 
     class DataAndTimeSectionViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -108,7 +108,7 @@ class ChatAdapter(private val context: Context) :
             if (holder.layoutPosition >= 2) {
 
                 val isTimeLapseOver5 =
-                    (currentMessage.timestamp - messages[position - 2].timestamp) > ONE_HOUR
+                    (currentMessage.timestamp - messages[position - 2].timestamp) > 30000
 
                 if (isTimeLapseOver5) {
                     val time = formatDate(currentMessage.timestamp)

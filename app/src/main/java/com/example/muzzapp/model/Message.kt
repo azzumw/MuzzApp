@@ -2,8 +2,6 @@ package com.example.muzzapp.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.text.SimpleDateFormat
-
 
 @Entity(tableName = "message")
 data class Message(

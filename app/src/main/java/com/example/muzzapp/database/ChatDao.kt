@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.muzzapp.model.Message
+
 @Dao
 interface ChatDao {
 

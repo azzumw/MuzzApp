@@ -75,14 +75,13 @@ class ChatAdapter(private val context: Context) :
         if (getItemViewType(position) == 2) {
             val time = Calendar.getInstance().timeInMillis
             val fDayTime = formatDate(time)
-            (holder as DataAndTimeSectionViewHolder).dayTextView.text = fDayTime.first
-            holder.timeTextView.text = fDayTime.second
+
+            displayDayAndTime(holder as DataAndTimeSectionViewHolder,fDayTime)
 
             if (messages.isNotEmpty()) {
 
                 val f2DayTime = formatDate(messages.first().timestamp)
-                holder.dayTextView.text = f2DayTime.first
-                holder.timeTextView.text = f2DayTime.second
+                displayDayAndTime(holder, f2DayTime)
             }
 
 
@@ -115,6 +114,14 @@ class ChatAdapter(private val context: Context) :
             }
 
         }
+    }
+
+    private fun displayDayAndTime(
+        holder: DataAndTimeSectionViewHolder,
+        f2DayTime: Pair<String, String>
+    ) {
+        holder.dayTextView.text = f2DayTime.first
+        holder.timeTextView.text = f2DayTime.second
     }
 
     override fun getItemCount(): Int {

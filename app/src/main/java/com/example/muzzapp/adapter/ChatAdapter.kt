@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.muzzapp.R
 import com.example.muzzapp.adapter.DataItem.Header
 import com.example.muzzapp.model.Message
+import java.text.SimpleDateFormat
 import java.util.Calendar
 
 private const val TWENTY_SECONDS = 20000
@@ -63,11 +64,16 @@ class ChatAdapter(private val context: Context) :
         return if (viewType == 2) DataAndTimeSectionViewHolder(view) else MessageViewHolder(view)
     }
 
+    private fun formatDate(time:Long):String{
+        val format = SimpleDateFormat("EEE HH:mm")
+        return format.format(time)
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if (getItemViewType(position) == 2) {
             (holder as DataAndTimeSectionViewHolder).dayTextView.text =
-                Calendar.getInstance().time.toString()
+                formatDate(Calendar.getInstance().timeInMillis)
             Log.e("$TAG onBindView posD:", position.toString())
         } else {
             val currentMessage = messages[position - 1]

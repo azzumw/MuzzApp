@@ -1,8 +1,8 @@
 package com.example.muzzapp.model
 
-import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.text.SimpleDateFormat
 
 
 @Entity(tableName = "message")

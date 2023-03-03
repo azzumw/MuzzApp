@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.muzzapp.R
-import com.example.muzzapp.adapter.DataItem.Header
 import com.example.muzzapp.model.Message
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -29,23 +28,14 @@ class ChatAdapter(private val context: Context) :
             notifyDataSetChanged()
         }
 
-    fun submitListA(list: List<Message>) {
-        when (list) {
-            null -> listOf(Header)
-            else -> listOf(Header) + messages
-        }
-    }
-
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
-        val layout = view.findViewById<View>(R.id.date_time_layout)
-
+        val layout:TextView = view.findViewById(R.id.timeStamp_tv)
     }
 
     class DataAndTimeSectionViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val dayTextView: TextView = view.findViewById(R.id.day_textview)
         val timeTextView: TextView = view.findViewById(R.id.time_textview)
-
     }
 
 
@@ -115,7 +105,23 @@ class ChatAdapter(private val context: Context) :
 
             }
 
+            if (holder.layoutPosition >= 2) {
+
+                val isTimeLapseOver5 =
+                    (currentMessage.timestamp - messages[position - 2].timestamp) > FIVE_SECONDS
+
+                if (isTimeLapseOver5) {
+                    val time = formatDate(currentMessage.timestamp)
+                    holder.layout.text = "${time.first} ${time.second}"
+                    holder.layout.visibility = View.VISIBLE
+
+                } else holder.layout.visibility = View.GONE
+
+            } else holder.layout.visibility = View.GONE
+
         }
+
+
     }
 
     private fun displayDayAndTime(
@@ -157,14 +163,6 @@ class ChatAdapter(private val context: Context) :
         )
     }
 
-}
-
-sealed class DataItem {
-    data class MessageSendItem(val message: Message) : DataItem()
-    data class MessageReceiveItem(val message: Message) : DataItem()
-    object Header : DataItem() {
-        val time: Long = Calendar.getInstance().timeInMillis
-    }
 }
 
 

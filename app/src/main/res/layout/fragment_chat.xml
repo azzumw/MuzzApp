@@ -8,20 +8,17 @@
         <variable
             name="viewModel"
             type="com.example.muzzapp.ui.ChatViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".ui.ChatFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chat_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="56dp"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/linear_container_for_message_box"
@@ -32,7 +29,6 @@
             app:stackFromEnd="true"
             tools:itemCount="16"
             tools:listitem="@layout/chat_list_item_me" />
-
 
         <LinearLayout
             android:id="@+id/linear_container_for_message_box"

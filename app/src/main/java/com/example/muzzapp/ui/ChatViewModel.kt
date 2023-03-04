@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.muzzapp.database.ChatDao
 import com.example.muzzapp.model.Message
+import com.example.muzzapp.repository.Repository
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -23,9 +24,9 @@ enum class User {
 }
 
 
-class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
+class ChatViewModel(private val repository: Repository) : ViewModel() {
 
-    val messages: LiveData<List<Message>?> = chatDao.getAllMessages()
+    val messages: LiveData<List<Message>?> = repository.getAllMessages()
 
     val messageText = MutableLiveData<String>()
 
@@ -35,7 +36,7 @@ class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
                 Message(messageText.value!!, deliveryChannel, Calendar.getInstance().timeInMillis)
 
             viewModelScope.launch {
-                chatDao.insertMessage(message)
+                repository.insertMessage(message)
             }
         }
 
@@ -46,16 +47,16 @@ class ChatViewModel(private val chatDao: ChatDao) : ViewModel() {
 
     fun clear() = viewModelScope.launch {
         if (!messages.value.isNullOrEmpty()) {
-            chatDao.clearMessages()
+            repository.clearMessages()
         }
     }
 }
 
-class ChatViewModelFactory(private val chatDao: ChatDao) : ViewModelProvider.Factory {
+class ChatViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ChatViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return ChatViewModel(chatDao) as T
+            return ChatViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -10,6 +10,7 @@ import com.example.muzzapp.MainActivity
 import com.example.muzzapp.R
 import com.example.muzzapp.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
+import com.example.muzzapp.repository.RepositoryImpl
 
 class ChatFragment : Fragment() {
 
@@ -18,9 +19,7 @@ class ChatFragment : Fragment() {
 
     private val chatViewModel: ChatViewModel by viewModels {
         ChatViewModelFactory(
-            (requireActivity().application as ChatApplication)
-                .database.chatDao()
-        )
+            RepositoryImpl((requireActivity().application as ChatApplication).database.chatDao()))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,10 +54,12 @@ class ChatFragment : Fragment() {
 
     private fun setScreenTitle(channelId: Int) {
         if (channelId == User.ME.ordinal) {
-            (activity as MainActivity).supportActionBar?.title = getString(R.string.frag_title_user_name_you)
+            (activity as MainActivity).supportActionBar?.title =
+                getString(R.string.frag_title_user_name_you)
 
         } else {
-            (activity as MainActivity).supportActionBar?.title = getString(R.string.frag_title_user_name_me)
+            (activity as MainActivity).supportActionBar?.title =
+                getString(R.string.frag_title_user_name_me)
         }
     }
 

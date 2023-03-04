@@ -105,7 +105,7 @@ class ChatAdapter(private val context: Context) :
     }
 
     private fun displayDayAndTime(
-        holder: ChatAdapter.DataAndTimeSectionViewHolder,
+        holder: DataAndTimeSectionViewHolder,
         dayTime: Pair<String, String>
     ) {
         holder.dayTextView.text = dayTime.first

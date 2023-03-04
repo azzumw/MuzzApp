@@ -91,11 +91,11 @@ class ChatAdapter(private val context: Context) :
             if (holder.layoutPosition >= 2) {
 
                 val isTimeLapseOver5 =
-                    (currentMessage.timestamp - messages[position - 2].timestamp) > ONE_HOUR
+                    (currentMessage.timestamp - messages[position - 2].timestamp) > 5000
 
                 if (isTimeLapseOver5) {
                     val time = formatDate(currentMessage.timestamp)
-                    holder.layout.text = "${time.first} ${time.second}"
+                    holder.layout.text = context.getString(R.string.date_time,time.first,time.second)
                     holder.layout.visibility = View.VISIBLE
 
                 } else holder.layout.visibility = View.GONE
@@ -105,7 +105,7 @@ class ChatAdapter(private val context: Context) :
     }
 
     private fun displayDayAndTime(
-        holder: DataAndTimeSectionViewHolder,
+        holder: ChatAdapter.DataAndTimeSectionViewHolder,
         dayTime: Pair<String, String>
     ) {
         holder.dayTextView.text = dayTime.first
@@ -120,14 +120,14 @@ class ChatAdapter(private val context: Context) :
         if (position == 0) 2 else messages[position - 1].sender
 
 
-    private fun setChatBubbleWithTail(viewType: Int, holder: MessageViewHolder) =
+    private fun setChatBubbleWithTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) =
         if (viewType == 0) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble_tail)
         } else {
             setDrawable(holder, R.drawable.bg_received_chat_bubble_tail)
         }
 
-    private fun setChatBubbleWithoutTail(viewType: Int, holder: MessageViewHolder) {
+    private fun setChatBubbleWithoutTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) {
         if (viewType == 0) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble)
         } else {
@@ -135,7 +135,7 @@ class ChatAdapter(private val context: Context) :
         }
     }
 
-    private fun setDrawable(holder: MessageViewHolder, resourceId: Int) {
+    private fun setDrawable(holder: ChatAdapter.MessageViewHolder, resourceId: Int) {
         holder.messageTextView.background = ResourcesCompat.getDrawable(
             context.resources,
             resourceId,

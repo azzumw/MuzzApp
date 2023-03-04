@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun formatDate(time: Long): Pair<String, String> {
-    val format = SimpleDateFormat("EEE HH:mm", Locale.UK)
+    val format = SimpleDateFormat("EEEE HH:mm", Locale.UK)
     val formattedDate = format.format(time)
     return Pair(formattedDate.substringBefore(' '), formattedDate.substringAfter(' '))
 }

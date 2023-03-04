@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.muzzapp.ChatApplication
+import com.example.muzzapp.MainActivity
 import com.example.muzzapp.R
 import com.example.muzzapp.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
@@ -38,6 +39,8 @@ class ChatFragment : Fragment() {
         binding.lifecycleOwner = this.viewLifecycleOwner
         binding.viewModel = chatViewModel
 
+        setScreenTitle(deliveryChannel)
+
         return binding.root
     }
 
@@ -48,6 +51,15 @@ class ChatFragment : Fragment() {
 
         recyclerView.adapter = ChatAdapter(requireContext())
 
+    }
+
+    private fun setScreenTitle(channelId: Int) {
+        if (channelId == User.ME.ordinal) {
+            (activity as MainActivity).supportActionBar?.title = "You"
+
+        } else {
+            (activity as MainActivity).supportActionBar?.title = "Me"
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -61,9 +73,11 @@ class ChatFragment : Fragment() {
                 true
             }
             R.id.switch_user_id -> {
-                deliveryChannel = if(deliveryChannel == User.ME.ordinal){
+                deliveryChannel = if (deliveryChannel == User.ME.ordinal) {
+                    setScreenTitle(User.YOU.ordinal)
                     User.ME.switch.ordinal
-                }else{
+                } else {
+                    setScreenTitle(User.ME.ordinal)
                     User.YOU.switch.ordinal
                 }
                 true

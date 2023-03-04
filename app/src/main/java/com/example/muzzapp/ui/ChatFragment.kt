@@ -55,10 +55,10 @@ class ChatFragment : Fragment() {
 
     private fun setScreenTitle(channelId: Int) {
         if (channelId == User.ME.ordinal) {
-            (activity as MainActivity).supportActionBar?.title = "You"
+            (activity as MainActivity).supportActionBar?.title = getString(R.string.frag_title_user_name_you)
 
         } else {
-            (activity as MainActivity).supportActionBar?.title = "Me"
+            (activity as MainActivity).supportActionBar?.title = getString(R.string.frag_title_user_name_me)
         }
     }
 

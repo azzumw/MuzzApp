@@ -17,6 +17,8 @@
     <string name="clear_chat_menu_item">Clear Chat</string>
     <string name="switch_user_menu_item">Switch User</string>
     <string name="date_time"> <em>%s</em> %s</string>
+    <string name="frag_title_user_name_you">You</string>
+    <string name="frag_title_user_name_me">Me</string>
 
 
 </resources>

@@ -7,7 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class RepositoryImpl(private val chatDao: ChatDao):Repository {
-
     override suspend fun insertMessage(message: Message) {
         withContext(Dispatchers.IO){
             chatDao.insertMessage(message)

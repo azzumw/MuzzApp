@@ -1,4 +1,4 @@
-package com.example.muzzapp.adapter
+package com.example.muzzapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

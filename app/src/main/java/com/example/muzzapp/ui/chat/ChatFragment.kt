@@ -1,4 +1,4 @@
-package com.example.muzzapp.ui
+package com.example.muzzapp.ui.chat
 
 import android.os.Bundle
 import android.view.*
@@ -8,9 +8,13 @@ import androidx.fragment.app.viewModels
 import com.example.muzzapp.ChatApplication
 import com.example.muzzapp.MainActivity
 import com.example.muzzapp.R
-import com.example.muzzapp.adapter.ChatAdapter
+import com.example.muzzapp.ui.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
 import com.example.muzzapp.repository.RepositoryImpl
+import com.example.muzzapp.ui.ChatViewModel
+import com.example.muzzapp.ui.ChatViewModelFactory
+import com.example.muzzapp.ui.User
+import com.example.muzzapp.ui.deliveryChannel
 
 class ChatFragment : Fragment() {
 

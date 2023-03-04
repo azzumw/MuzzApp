@@ -47,7 +47,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment_container"
-            android:name="com.example.muzzapp.ui.ChatFragment"
+            android:name="com.example.muzzapp.ui.chat.ChatFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"

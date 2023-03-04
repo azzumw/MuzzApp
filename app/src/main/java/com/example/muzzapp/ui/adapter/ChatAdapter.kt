@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +27,9 @@ class ChatAdapter(private val context: Context) :
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
-        val layout: TextView = view.findViewById(R.id.timeStamp_tv)
+        val dayTimeContainer = view.findViewById<LinearLayout>(R.id.day_time_container)
+        val dayTextView: TextView = view.findViewById(R.id.day_text_view)
+        val timeStampTextView: TextView = view.findViewById(R.id.timestamp_text_view)
     }
 
     class DataAndTimeSectionViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -95,12 +98,14 @@ class ChatAdapter(private val context: Context) :
 
                 if (isTimeLapseOver5) {
                     val time = formatDate(currentMessage.timestamp)
-                    holder.layout.text = context.getString(R.string.date_time,time.first,time.second)
-                    holder.layout.visibility = View.VISIBLE
+                    holder.dayTextView.text = time.first
+                    holder.timeStampTextView.text = time.second
+//                    holder.layout.text = context.getString(R.string.date_time,time.first,time.second)
+                    holder.dayTimeContainer.visibility = View.VISIBLE
 
-                } else holder.layout.visibility = View.GONE
+                } else holder.dayTimeContainer.visibility = View.GONE
 
-            } else holder.layout.visibility = View.GONE
+            } else holder.dayTimeContainer.visibility = View.GONE
         }
     }
 

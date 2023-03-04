@@ -7,25 +7,32 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <TextView
-        android:id="@+id/timeStamp_tv"
-        android:layout_width="0dp"
+
+    <LinearLayout
+        android:id="@+id/day_time_container"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/chat_text_bubble_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/chat_text_bubble_item"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/day_text_view"
+            style="@style/day_timestamp_style"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/timestamp_text_view"
+            style="@style/day_timestamp_style" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/chat_text_bubble_item"
-        style="@style/chat_bubble_received"
-        android:backgroundTint="@color/blue_gray"
-        android:background="@drawable/bg_received_chat_bubble"
+        style="@style/chat_bubble_received_style"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timeStamp_tv"
+        app:layout_constraintTop_toBottomOf="@id/day_time_container"
         tools:text="@string/dummy_message_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

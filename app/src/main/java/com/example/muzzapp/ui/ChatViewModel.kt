@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.muzzapp.database.ChatDao
 import com.example.muzzapp.model.Message
 import com.example.muzzapp.repository.Repository
 import kotlinx.coroutines.launch

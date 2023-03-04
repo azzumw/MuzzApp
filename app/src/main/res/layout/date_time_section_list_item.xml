@@ -18,6 +18,7 @@
         <TextView
             android:id="@+id/day_textview"
             style="@style/day_timestamp_style"
+            android:fontFamily="@font/inter_bold"
             android:textStyle="bold"
             tools:text="Thursday" />
 

@@ -4,13 +4,14 @@
     <style name="chat_bubble_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">sans-serif-light</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
-        <item name="android:textSize">21sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:breakStrategy">high_quality</item>
-        <item name="android:maxEms">14</item>
+        <item name="android:maxEms">13</item>
     </style>
 
     <style name="chat_bubble_sent_style" parent="chat_bubble_style">
@@ -27,6 +28,8 @@
 
     <style name="day_timestamp_style">
         <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/gray</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginEnd">4dp</item>

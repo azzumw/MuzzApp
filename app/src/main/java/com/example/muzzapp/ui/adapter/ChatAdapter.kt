@@ -4,16 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.muzzapp.R
-import com.example.muzzapp.formatDate
+import com.example.muzzapp.*
 import com.example.muzzapp.model.Message
 import java.util.*
 
 private const val TWENTY_SECONDS = 20000
 private const val ONE_HOUR = 3600000
+private const val HEADER_TYPE = 2
 
 class ChatAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -26,7 +27,9 @@ class ChatAdapter(private val context: Context) :
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
-        val layout: TextView = view.findViewById(R.id.timeStamp_tv)
+        val dayTimeContainer: LinearLayout = view.findViewById(R.id.day_time_container)
+        val dayTextView: TextView = view.findViewById(R.id.day_text_view)
+        val timeStampTextView: TextView = view.findViewById(R.id.timestamp_text_view)
     }
 
     class DataAndTimeSectionViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -48,22 +51,25 @@ class ChatAdapter(private val context: Context) :
 
         val view = adapterLayout.inflate(layout, parent, false)
 
-        return if (viewType == 2) DataAndTimeSectionViewHolder(view) else MessageViewHolder(view)
+        return if (viewType == HEADER_TYPE) DataAndTimeSectionViewHolder(view) else MessageViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if (getItemViewType(position) == 2) {
+        if (getItemViewType(position) == HEADER_TYPE) {
 
             if (messages.isNotEmpty()) {
-                val firstMessageTimeStamp = formatDate(messages.first().timestamp)
-                displayDayAndTime(holder as DataAndTimeSectionViewHolder, firstMessageTimeStamp)
+                showCurrentDayTimestamp(messages.first(), holder as DataAndTimeSectionViewHolder)
             } else {
-                val currentMessageTimeStamp = formatDate(Calendar.getInstance().timeInMillis)
-                displayDayAndTime(holder as DataAndTimeSectionViewHolder, currentMessageTimeStamp)
+                val currentTimeStamp = formatDate(Calendar.getInstance().timeInMillis)
+                showCurrentDayTimestamp(
+                    holder as DataAndTimeSectionViewHolder,
+                    currentTimeStamp
+                )
             }
 
         } else {
+
             val currentMessage = messages[position - 1]
             (holder as MessageViewHolder).messageTextView.text = currentMessage.messageText
 
@@ -88,28 +94,18 @@ class ChatAdapter(private val context: Context) :
 
             }
 
-            if (holder.layoutPosition >= 2) {
+            when {
+                holder.layoutPosition >= 2 -> {
+                    val isTimeLapseOverAnHour =
+                        (currentMessage.timestamp - messages[position - 2].timestamp) > ONE_HOUR
 
-                val isTimeLapseOver5 =
-                    (currentMessage.timestamp - messages[position - 2].timestamp) > 5000
-
-                if (isTimeLapseOver5) {
-                    val time = formatDate(currentMessage.timestamp)
-                    holder.layout.text = context.getString(R.string.date_time,time.first,time.second)
-                    holder.layout.visibility = View.VISIBLE
-
-                } else holder.layout.visibility = View.GONE
-
-            } else holder.layout.visibility = View.GONE
+                    if (isTimeLapseOverAnHour) {
+                        showCurrentDayTimestamp(currentMessage, holder)
+                    } else holder.dayTimeContainer.visibility = View.GONE
+                }
+                else -> holder.dayTimeContainer.visibility = View.GONE
+            }
         }
-    }
-
-    private fun displayDayAndTime(
-        holder: DataAndTimeSectionViewHolder,
-        dayTime: Pair<String, String>
-    ) {
-        holder.dayTextView.text = dayTime.first
-        holder.timeTextView.text = dayTime.second
     }
 
     override fun getItemCount(): Int {
@@ -142,7 +138,6 @@ class ChatAdapter(private val context: Context) :
             null
         )
     }
-
 }
 
 

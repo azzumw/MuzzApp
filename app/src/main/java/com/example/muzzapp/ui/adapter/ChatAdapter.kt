@@ -60,12 +60,12 @@ class ChatAdapter(private val context: Context) :
         if (getItemViewType(position) == HEADER_TYPE) {
 
             if (messages.isNotEmpty()) {
-                showCurrentDayAndTimestamp(messages.first(), holder as DataAndTimeSectionViewHolder)
+                showCurrentDayTimestamp(messages.first(), holder as DataAndTimeSectionViewHolder)
             } else {
-                val currentMessageTimeStamp = formatDate(Calendar.getInstance().timeInMillis)
-                showCurrentDayAndTimestamp(
+                val currentTimeStamp = formatDate(Calendar.getInstance().timeInMillis)
+                showCurrentDayTimestamp(
                     holder as DataAndTimeSectionViewHolder,
-                    currentMessageTimeStamp
+                    currentTimeStamp
                 )
             }
 
@@ -101,7 +101,7 @@ class ChatAdapter(private val context: Context) :
                         (currentMessage.timestamp - messages[position - 2].timestamp) > ONE_HOUR
 
                     if (isTimeLapseOverAnHour) {
-                        showCurrentDayAndTimestamp(currentMessage, holder)
+                        showCurrentDayTimestamp(currentMessage, holder)
                     } else holder.dayTimeContainer.visibility = View.GONE
                 }
                 else -> holder.dayTimeContainer.visibility = View.GONE
@@ -110,7 +110,7 @@ class ChatAdapter(private val context: Context) :
     }
 
 
-    private fun showCurrentDayAndTimestamp(
+    private fun showCurrentDayTimestamp(
         currentMessage: Message,
         holder: RecyclerView.ViewHolder
     ) {
@@ -129,7 +129,7 @@ class ChatAdapter(private val context: Context) :
         }
     }
 
-    private fun showCurrentDayAndTimestamp(
+    private fun showCurrentDayTimestamp(
         holder: DataAndTimeSectionViewHolder,
         dayTime: Pair<String, String>
     ) {
@@ -167,7 +167,6 @@ class ChatAdapter(private val context: Context) :
             null
         )
     }
-
 }
 
 

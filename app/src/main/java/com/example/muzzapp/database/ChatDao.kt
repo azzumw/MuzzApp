@@ -1,5 +1,6 @@
 package com.example.muzzapp.database
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
@@ -19,6 +20,11 @@ interface ChatDao {
     @Query("delete from message")
     suspend fun clearMessages()
 
+    @VisibleForTesting
     @Query("select * from message limit 1")
-    suspend fun getMessage(): Message?
+    suspend fun getRecentMessage(): Message?
+
+    @VisibleForTesting
+    @Insert
+    suspend fun addAllMessages(list: List<Message>)
 }

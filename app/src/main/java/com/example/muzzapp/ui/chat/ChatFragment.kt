@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.muzzapp.ChatApplication
-import com.example.muzzapp.MainActivity
 import com.example.muzzapp.R
 import com.example.muzzapp.ui.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
@@ -23,12 +22,14 @@ class ChatFragment : Fragment() {
 
     private val chatViewModel: ChatViewModel by viewModels {
         ChatViewModelFactory(
-            RepositoryImpl((requireActivity().application as ChatApplication).database.chatDao()))
+            RepositoryImpl((requireActivity().application as ChatApplication).database.chatDao())
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
     }
 
     override fun onCreateView(
@@ -57,14 +58,14 @@ class ChatFragment : Fragment() {
     }
 
     private fun setScreenTitle(channelId: Int) {
-        if (channelId == User.ME.ordinal) {
-            (activity as MainActivity).supportActionBar?.title =
-                getString(R.string.frag_title_user_name_you)
-
-        } else {
-            (activity as MainActivity).supportActionBar?.title =
-                getString(R.string.frag_title_user_name_me)
-        }
+//        if (channelId == User.ME.ordinal) {
+//            (activity as MainActivity).supportActionBar?.title =
+//                getString(R.string.frag_title_user_name_you)
+//
+//        } else {
+//            (activity as MainActivity).supportActionBar?.title =
+//                getString(R.string.frag_title_user_name_me)
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

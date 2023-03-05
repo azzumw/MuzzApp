@@ -1,5 +1,6 @@
 package com.example.muzzapp.repository
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import com.example.muzzapp.database.ChatDao
 import com.example.muzzapp.model.Message
@@ -23,7 +24,8 @@ class RepositoryImpl(private val chatDao: ChatDao):Repository {
        }
     }
 
-    override suspend fun getMessage(): Message? {
-        return chatDao.getMessage()
+    @VisibleForTesting
+    override suspend fun getRecentMessage(): Message? {
+        return chatDao.getRecentMessage()
     }
 }

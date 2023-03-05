@@ -24,7 +24,6 @@ import java.util.*
 @RunWith(AndroidJUnit4::class)
 class ChatDatabaseTests {
 
-
     //subject under test
     private lateinit var database: ChatDatabase
 
@@ -52,7 +51,7 @@ class ChatDatabaseTests {
     fun insertMessage_savesMessageInDatabase() = runTest {
         //GIVEN - an instance of Message
         val date = Date().time
-        val message = Message("Hello", sender = 0, date)
+        val message = Message("Hello", User.ME.ordinal, date)
 
         //WHEN - message is inserted in database
         database.chatDao().insertMessage(message)
@@ -60,10 +59,36 @@ class ChatDatabaseTests {
         // THEN - verify it is in the database
         val result = database.chatDao().getAllMessages().getOrAwaitValue()
         MatcherAssert.assertThat(result?.size, `is`(1))
+        MatcherAssert.assertThat(result?.first()?.sender, `is`(0))
+        MatcherAssert.assertThat(result?.first()?.messageText, `is`("Hello"))
     }
 
     @Test
-    fun clearMessages() = runTest{
+    fun getAllMessages_returnsAllTheMessages() = runTest {
+        // GIVEN: a list of messages
+        val messages = listOf(
+            Message("Hello", User.ME.ordinal, 20000L),
+            Message("How are you?", User.YOU.ordinal, 30000L),
+            Message("Are you there?", User.ME.ordinal, 40000L),
+        )
+
+        //saved in the database
+        database.chatDao().addAllMessages(messages)
+
+        // WHEN: getMessages is called
+        val messageList = database.chatDao().getAllMessages().getOrAwaitValue()
+
+        // THEN: verify all size of the database table is 3
+        // messages are stored in the database.
+        MatcherAssert.assertThat(messageList?.size, `is`(3))
+        MatcherAssert.assertThat(
+            messageList,
+            hasItems(messages.first(), messages[1], messages.last())
+        )
+    }
+
+    @Test
+    fun clearMessages_clearsAllTheMessages() = runTest {
         //GIVEN - a list a messages
         val messages = listOf(
             Message("Hello", User.ME.ordinal, 20000L),
@@ -77,7 +102,10 @@ class ChatDatabaseTests {
         // check they are stored in the database
         val messageList = database.chatDao().getAllMessages().getOrAwaitValue()
         MatcherAssert.assertThat(messageList?.size, `is`(3))
-        MatcherAssert.assertThat(messageList, hasItems(messages.first(),messages[1],messages.last()))
+        MatcherAssert.assertThat(
+            messageList,
+            hasItems(messages.first(), messages[1], messages.last())
+        )
 
         //WHEN - database is cleared
         database.chatDao().clearMessages()

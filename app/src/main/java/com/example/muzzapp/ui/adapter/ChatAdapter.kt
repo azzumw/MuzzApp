@@ -59,14 +59,17 @@ class ChatAdapter(private val context: Context) :
         if (getItemViewType(position) == 2) {
 
             if (messages.isNotEmpty()) {
-
                 showCurrentDayAndTimestamp(messages.first(), holder as DataAndTimeSectionViewHolder)
             } else {
                 val currentMessageTimeStamp = formatDate(Calendar.getInstance().timeInMillis)
-                showCurrentDayAndTimestamp(holder as DataAndTimeSectionViewHolder, currentMessageTimeStamp)
+                showCurrentDayAndTimestamp(
+                    holder as DataAndTimeSectionViewHolder,
+                    currentMessageTimeStamp
+                )
             }
 
         } else {
+
             val currentMessage = messages[position - 1]
             (holder as MessageViewHolder).messageTextView.text = currentMessage.messageText
 
@@ -100,7 +103,7 @@ class ChatAdapter(private val context: Context) :
                         showCurrentDayAndTimestamp(currentMessage, holder)
                     } else holder.dayTimeContainer.visibility = View.GONE
                 }
-               else -> holder.dayTimeContainer.visibility = View.GONE
+                else -> holder.dayTimeContainer.visibility = View.GONE
             }
         }
     }

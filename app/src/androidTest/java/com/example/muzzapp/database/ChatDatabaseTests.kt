@@ -3,7 +3,6 @@ package com.example.muzzapp.database
 import androidx.room.Room
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.muzzapp.model.Message
 import com.example.muzzapp.ui.User
 import com.example.muzzapp.util.MainCoroutineRule
@@ -17,11 +16,9 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import java.util.*
 
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
 class ChatDatabaseTests {
 
     //subject under test

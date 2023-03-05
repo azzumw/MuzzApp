@@ -15,6 +15,7 @@ import java.util.*
 
 private const val TWENTY_SECONDS = 20000
 private const val ONE_HOUR = 3600000
+private const val HEADER_TYPE = 2
 
 class ChatAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -51,12 +52,12 @@ class ChatAdapter(private val context: Context) :
 
         val view = adapterLayout.inflate(layout, parent, false)
 
-        return if (viewType == 2) DataAndTimeSectionViewHolder(view) else MessageViewHolder(view)
+        return if (viewType == HEADER_TYPE) DataAndTimeSectionViewHolder(view) else MessageViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if (getItemViewType(position) == 2) {
+        if (getItemViewType(position) == HEADER_TYPE) {
 
             if (messages.isNotEmpty()) {
                 showCurrentDayAndTimestamp(messages.first(), holder as DataAndTimeSectionViewHolder)

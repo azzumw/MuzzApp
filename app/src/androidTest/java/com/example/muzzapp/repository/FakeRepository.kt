@@ -27,4 +27,9 @@ class FakeRepository(private var list: MutableList<Message>? = mutableListOf()) 
     override suspend fun getRecentMessage(): Message? {
         return messages.value?.last()
     }
+
+    fun addAllMessages(mListMessages:List<Message>){
+        list?.addAll(mListMessages)
+        _messages.value = list
+    }
 }

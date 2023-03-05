@@ -11,8 +11,10 @@ class FakeRepository(private var list: MutableList<Message>? = mutableListOf()) 
 
 
     override suspend fun insertMessage(message: Message) {
-        list?.add(message)
-        _messages.value = list
+
+            list?.add(message)
+            _messages.value = list
+
     }
 
     override suspend fun clearMessages() {

@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.muzzapp.ChatApplication
 import com.example.muzzapp.R
+import com.example.muzzapp.ServiceLocator
 import com.example.muzzapp.ui.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
 import com.example.muzzapp.repository.RepositoryImpl
@@ -20,9 +21,15 @@ class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
 
+//    private val chatViewModel: ChatViewModel by viewModels {
+//        ChatViewModelFactory(
+//            RepositoryImpl((requireActivity().application as ChatApplication).database.chatDao())
+//        )
+//    }
+
     private val chatViewModel: ChatViewModel by viewModels {
         ChatViewModelFactory(
-            RepositoryImpl((requireActivity().application as ChatApplication).database.chatDao())
+            (requireActivity().application as ChatApplication).repository
         )
     }
 

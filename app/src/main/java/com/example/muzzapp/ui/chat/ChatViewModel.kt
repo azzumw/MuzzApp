@@ -1,5 +1,6 @@
 package com.example.muzzapp.ui
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,6 +42,19 @@ class ChatViewModel(private val repository: Repository) : ViewModel() {
 
         messageText.value = ""
     }
+
+    @VisibleForTesting
+    fun sendMessage(message:String, user:Int){
+        messageText.value = message
+        deliveryChannel = user
+
+        viewModelScope.launch {
+            repository.insertMessage(Message(message, deliveryChannel,Calendar.getInstance().timeInMillis))
+        }
+
+    }
+
+
 
     private fun validateInput() = messageText.value.isNullOrBlank()
 

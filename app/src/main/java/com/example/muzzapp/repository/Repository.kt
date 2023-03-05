@@ -11,5 +11,5 @@ interface Repository {
 
     fun getAllMessages():LiveData<List<Message>?>
 
-    suspend fun getMessage(): Message?
+    suspend fun getRecentMessage(): Message?
 }

@@ -90,6 +90,8 @@ dependencies {
 
     androidTestImplementation "junit:junit:4.13.2"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0-alpha02")
+
 
     // Testing code should not be included in the main code.
     // Once https://issuetracker.google.com/128612536 is fixed this can be fixed.
@@ -103,5 +105,7 @@ dependencies {
     def robolectricVersion = '4.3.1'
     //roboelectric
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
+
+
 
 }

@@ -29,6 +29,7 @@ class ChatFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
     }
 
     override fun onCreateView(
@@ -57,14 +58,14 @@ class ChatFragment : Fragment() {
     }
 
     private fun setScreenTitle(channelId: Int) {
-        if (channelId == User.ME.ordinal) {
-            (activity as MainActivity).supportActionBar?.title =
-                getString(R.string.frag_title_user_name_you)
-
-        } else {
-            (activity as MainActivity).supportActionBar?.title =
-                getString(R.string.frag_title_user_name_me)
-        }
+//        if (channelId == User.ME.ordinal) {
+//            (activity as MainActivity).supportActionBar?.title =
+//                getString(R.string.frag_title_user_name_you)
+//
+//        } else {
+//            (activity as MainActivity).supportActionBar?.title =
+//                getString(R.string.frag_title_user_name_me)
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

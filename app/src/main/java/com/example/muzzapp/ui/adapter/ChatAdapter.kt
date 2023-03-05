@@ -27,7 +27,7 @@ class ChatAdapter(private val context: Context) :
 
     class MessageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val messageTextView: TextView = view.findViewById(R.id.chat_text_bubble_item)
-        val dayTimeContainer = view.findViewById<LinearLayout>(R.id.day_time_container)
+        val dayTimeContainer: LinearLayout = view.findViewById(R.id.day_time_container)
         val dayTextView: TextView = view.findViewById(R.id.day_text_view)
         val timeStampTextView: TextView = view.findViewById(R.id.timestamp_text_view)
     }
@@ -59,11 +59,11 @@ class ChatAdapter(private val context: Context) :
         if (getItemViewType(position) == 2) {
 
             if (messages.isNotEmpty()) {
-                val firstMessageTimeStamp = formatDate(messages.first().timestamp)
-                displayDayAndTime(holder as DataAndTimeSectionViewHolder, firstMessageTimeStamp)
+
+                showCurrentDayAndTimestamp(messages.first(), holder as DataAndTimeSectionViewHolder)
             } else {
                 val currentMessageTimeStamp = formatDate(Calendar.getInstance().timeInMillis)
-                displayDayAndTime(holder as DataAndTimeSectionViewHolder, currentMessageTimeStamp)
+                showCurrentDayAndTimestamp(holder as DataAndTimeSectionViewHolder, currentMessageTimeStamp)
             }
 
         } else {
@@ -91,25 +91,41 @@ class ChatAdapter(private val context: Context) :
 
             }
 
-            if (holder.layoutPosition >= 2) {
+            when {
+                holder.layoutPosition >= 2 -> {
+                    val isTimeLapseOverAnHour =
+                        (currentMessage.timestamp - messages[position - 2].timestamp) > ONE_HOUR
 
-                val isTimeLapseOver5 =
-                    (currentMessage.timestamp - messages[position - 2].timestamp) > 5000
-
-                if (isTimeLapseOver5) {
-                    val time = formatDate(currentMessage.timestamp)
-                    holder.dayTextView.text = time.first
-                    holder.timeStampTextView.text = time.second
-//                    holder.layout.text = context.getString(R.string.date_time,time.first,time.second)
-                    holder.dayTimeContainer.visibility = View.VISIBLE
-
-                } else holder.dayTimeContainer.visibility = View.GONE
-
-            } else holder.dayTimeContainer.visibility = View.GONE
+                    if (isTimeLapseOverAnHour) {
+                        showCurrentDayAndTimestamp(currentMessage, holder)
+                    } else holder.dayTimeContainer.visibility = View.GONE
+                }
+               else -> holder.dayTimeContainer.visibility = View.GONE
+            }
         }
     }
 
-    private fun displayDayAndTime(
+
+    private fun showCurrentDayAndTimestamp(
+        currentMessage: Message,
+        holder: RecyclerView.ViewHolder
+    ) {
+        when (holder) {
+            is MessageViewHolder -> {
+                val time = formatDate(currentMessage.timestamp)
+                holder.dayTextView.text = time.first
+                holder.timeStampTextView.text = time.second
+                holder.dayTimeContainer.visibility = View.VISIBLE
+            }
+            is DataAndTimeSectionViewHolder -> {
+                val time = formatDate(currentMessage.timestamp)
+                holder.dayTextView.text = time.first
+                holder.timeTextView.text = time.second
+            }
+        }
+    }
+
+    private fun showCurrentDayAndTimestamp(
         holder: DataAndTimeSectionViewHolder,
         dayTime: Pair<String, String>
     ) {
@@ -125,14 +141,14 @@ class ChatAdapter(private val context: Context) :
         if (position == 0) 2 else messages[position - 1].sender
 
 
-    private fun setChatBubbleWithTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) =
+    private fun setChatBubbleWithTail(viewType: Int, holder: MessageViewHolder) =
         if (viewType == 0) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble_tail)
         } else {
             setDrawable(holder, R.drawable.bg_received_chat_bubble_tail)
         }
 
-    private fun setChatBubbleWithoutTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) {
+    private fun setChatBubbleWithoutTail(viewType: Int, holder: MessageViewHolder) {
         if (viewType == 0) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble)
         } else {
@@ -140,7 +156,7 @@ class ChatAdapter(private val context: Context) :
         }
     }
 
-    private fun setDrawable(holder: ChatAdapter.MessageViewHolder, resourceId: Int) {
+    private fun setDrawable(holder: MessageViewHolder, resourceId: Int) {
         holder.messageTextView.background = ResourcesCompat.getDrawable(
             context.resources,
             resourceId,

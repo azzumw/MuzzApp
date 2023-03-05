@@ -8,8 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.muzzapp.R
-import com.example.muzzapp.formatDate
+import com.example.muzzapp.*
 import com.example.muzzapp.model.Message
 import java.util.*
 
@@ -109,34 +108,6 @@ class ChatAdapter(private val context: Context) :
         }
     }
 
-
-    private fun showCurrentDayTimestamp(
-        currentMessage: Message,
-        holder: RecyclerView.ViewHolder
-    ) {
-        when (holder) {
-            is MessageViewHolder -> {
-                val time = formatDate(currentMessage.timestamp)
-                holder.dayTextView.text = time.first
-                holder.timeStampTextView.text = time.second
-                holder.dayTimeContainer.visibility = View.VISIBLE
-            }
-            is DataAndTimeSectionViewHolder -> {
-                val time = formatDate(currentMessage.timestamp)
-                holder.dayTextView.text = time.first
-                holder.timeTextView.text = time.second
-            }
-        }
-    }
-
-    private fun showCurrentDayTimestamp(
-        holder: DataAndTimeSectionViewHolder,
-        dayTime: Pair<String, String>
-    ) {
-        holder.dayTextView.text = dayTime.first
-        holder.timeTextView.text = dayTime.second
-    }
-
     override fun getItemCount(): Int {
         return messages.size + 1
     }
@@ -145,14 +116,14 @@ class ChatAdapter(private val context: Context) :
         if (position == 0) 2 else messages[position - 1].sender
 
 
-    private fun setChatBubbleWithTail(viewType: Int, holder: MessageViewHolder) =
+    private fun setChatBubbleWithTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) =
         if (viewType == 0) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble_tail)
         } else {
             setDrawable(holder, R.drawable.bg_received_chat_bubble_tail)
         }
 
-    private fun setChatBubbleWithoutTail(viewType: Int, holder: MessageViewHolder) {
+    private fun setChatBubbleWithoutTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) {
         if (viewType == 0) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble)
         } else {
@@ -160,7 +131,7 @@ class ChatAdapter(private val context: Context) :
         }
     }
 
-    private fun setDrawable(holder: MessageViewHolder, resourceId: Int) {
+    private fun setDrawable(holder: ChatAdapter.MessageViewHolder, resourceId: Int) {
         holder.messageTextView.background = ResourcesCompat.getDrawable(
             context.resources,
             resourceId,

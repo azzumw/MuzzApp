@@ -11,27 +11,28 @@ object ServiceLocator {
     private val lock = Any()
 
     @Volatile
-    private var database:ChatDatabase? = null
+    private var database: ChatDatabase? = null
 
 
     @Volatile
-    var repository:Repository? = null
+    var repository: Repository? = null
         @VisibleForTesting set
 
-    fun provideChatRepository(context:Context):Repository{
-        synchronized(this){
+    fun provideChatRepository(context: Context): Repository {
+        //only allow one thread of execution at a time
+        synchronized(this) {
             return repository ?: createChatRepository(context)
         }
 
     }
 
-    private fun createChatRepository(context: Context):Repository {
+    private fun createChatRepository(context: Context): Repository {
         val newRepo = RepositoryImpl(createDatabase(context).chatDao())
         repository = newRepo
         return newRepo
     }
 
-    private fun createDatabase(context:Context): ChatDatabase {
+    private fun createDatabase(context: Context): ChatDatabase {
         val db = ChatDatabase.getDatabase(context)
         database = db
         return db

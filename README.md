@@ -3,21 +3,18 @@
 Graduate Android Developer Task: to develop a similar chat interface to that of Muzz app. 
 
 //Space for video
+![]()
+
 
 #### Highlights:
-- MVVM
-- Repository pattern
-- Room
-- Coroutines
-- Databinding
-- Testing (unit, integration and UI)
+- MVVM | Repository pattern | Room | Coroutines | Databinding | Testing (unit, integration and UI)
 
 Please Note:-  
 
 #### What's implemented?
 - Message List displays the newest items at the bottom and the oldest at the top.
 - Messages are distinguished by sender/receiver and their position in the chat window.
-- Message has a tail if 1) most recent 2) message after is sent by other user 3) message after it was sent after 20 seconds.
+- Message has a tail if 1) most recent 2) message after it is sent by the other user 3) message after it was sent after 20 seconds.
 - Item sectioning
 
 

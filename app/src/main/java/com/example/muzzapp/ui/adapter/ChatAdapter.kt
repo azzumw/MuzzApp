@@ -14,7 +14,10 @@ import java.util.*
 
 private const val TWENTY_SECONDS = 20000
 private const val ONE_HOUR = 3600000
+private const val MESSAGE_SEND_TYPE = 0
+private const val MESSAGE_RECEIVE_TYPE = 1
 private const val HEADER_TYPE = 2
+
 
 class ChatAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -43,15 +46,17 @@ class ChatAdapter(private val context: Context) :
         val adapterLayout = LayoutInflater.from(parent.context)
 
         val layout = when (viewType) {
-            0 -> R.layout.chat_list_item_me
-            1 -> R.layout.chat_list_item_other
-            2 -> R.layout.date_time_section_list_item
+            MESSAGE_SEND_TYPE -> R.layout.chat_list_item_me
+            MESSAGE_RECEIVE_TYPE -> R.layout.chat_list_item_other
+            HEADER_TYPE -> R.layout.date_time_section_list_item
             else -> throw java.lang.ClassCastException("Unknown View Type: $viewType")
         }
 
         val view = adapterLayout.inflate(layout, parent, false)
 
-        return if (viewType == HEADER_TYPE) DataAndTimeSectionViewHolder(view) else MessageViewHolder(view)
+        return if (viewType == HEADER_TYPE) DataAndTimeSectionViewHolder(view) else MessageViewHolder(
+            view
+        )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -84,7 +89,6 @@ class ChatAdapter(private val context: Context) :
                 val isTimeLapseOver20 =
                     (nextMessage.timestamp - currentMessage.timestamp) > TWENTY_SECONDS
 
-
                 if (isDifferentSender || isTimeLapseOver20) {
                     setChatBubbleWithTail(getItemViewType(position), holder)
 
@@ -94,6 +98,10 @@ class ChatAdapter(private val context: Context) :
 
             }
 
+            /*
+            when the previous message was sent over an hour ago, show the day and time,
+            else keep the day time view invisible
+            * */
             when {
                 holder.layoutPosition >= 2 -> {
                     val isTimeLapseOverAnHour =
@@ -109,11 +117,12 @@ class ChatAdapter(private val context: Context) :
     }
 
     override fun getItemCount(): Int {
+        //because of the header, this needed to be increased
         return messages.size + 1
     }
 
     override fun getItemViewType(position: Int): Int =
-        if (position == 0) 2 else messages[position - 1].sender
+        if (position == 0) HEADER_TYPE else messages[position - 1].sender
 
 
     private fun setChatBubbleWithTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) =

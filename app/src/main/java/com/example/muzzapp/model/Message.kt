@@ -12,4 +12,5 @@ data class Message(
 
 /*
 probably not an ideal primary key. would use auto-gen instead.
+In a small app like this, it works fine.
 * */

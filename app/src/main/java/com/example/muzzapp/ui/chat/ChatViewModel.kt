@@ -1,6 +1,5 @@
 package com.example.muzzapp.ui
 
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,7 +27,7 @@ class ChatViewModel(private val repository: Repository) : ViewModel() {
 
     val messages: LiveData<List<Message>?> = repository.getAllMessages()
 
-    //2-way databinding messageBoxText
+    //2-way data-binding messageBoxText
     val messageText = MutableLiveData<String>()
 
     fun insertMessage() {

@@ -54,7 +54,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
   perspective, in my opinion, it is not ideal(ish)[I could be wrong]. I would like to have more control over the arguments I am passing. Certainly requires some time for investigation and further improvements to the architecture.
 - I did try to implement [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter) instead. However,I noticed the list update on UI was not very smooth,that's why I have removed it from my final version of the app. 
 - would have liked to implement Dagger/KOIN DI framework instead of ServiceLocator.
-- written more tests
+- written more tests (e.g. UI tests using Custom Drawable matchers to verify message is sent/received by the correct user)
 
 #### Lessons Learnt:
 

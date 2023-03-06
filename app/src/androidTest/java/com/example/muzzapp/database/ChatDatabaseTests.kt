@@ -45,7 +45,7 @@ class ChatDatabaseTests {
     }
 
     @Test
-    fun insertMessage_savesMessageInDatabase() = runTest {
+    fun insertMessage_saves_message_in_database() = runTest {
         //GIVEN - an instance of Message
         val date = Date().time
         val message = Message("Hello", User.ME.ordinal, date)
@@ -61,7 +61,7 @@ class ChatDatabaseTests {
     }
 
     @Test
-    fun getAllMessages_returnsAllTheMessages() = runTest {
+    fun getAllMessages_returns_all_the_messages() = runTest {
         // GIVEN: a list of messages
         val messages = listOf(
             Message("Hello", User.ME.ordinal, 20000L),
@@ -85,7 +85,7 @@ class ChatDatabaseTests {
     }
 
     @Test
-    fun clearMessages_clearsAllTheMessages() = runTest {
+    fun clearMessages_clears_all_the_messages() = runTest {
         //GIVEN - a list a messages
         val messages = listOf(
             Message("Hello", User.ME.ordinal, 20000L),

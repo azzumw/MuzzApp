@@ -45,7 +45,6 @@ object ServiceLocator {
             // Clear all data to avoid test pollution.
             database?.apply {
                 clearAllTables()
-//                close()
             }
             database = null
             repository = null

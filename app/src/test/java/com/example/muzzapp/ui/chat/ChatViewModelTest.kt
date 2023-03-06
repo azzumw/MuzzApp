@@ -23,11 +23,6 @@ import java.util.Calendar
 @ExperimentalCoroutinesApi
 class ChatViewModelTest{
 
-    companion object{
-        private const val SENDER_USER = 0
-        private const val RECEIVER_USER = 1
-    }
-
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
@@ -42,7 +37,6 @@ class ChatViewModelTest{
 
     @Before
     fun setUp() {
-
         repository = FakeRepository()
     }
 
@@ -64,7 +58,6 @@ class ChatViewModelTest{
         // WHEN : a message is inserted
         chatViewModel.messageText.value = "Hello"
         chatViewModel.insertMessage()
-//        chatViewModel.sendMessage("Hello", SENDER_USER)
 
         //THEN - verify the message is successfully inserted in the database
         // and messages livedata is updated

@@ -9,9 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
-import com.example.muzzapp.util.ANIMATION_OFF
-import com.example.muzzapp.util.TRANS_ANIMATION_OFF
-import com.example.muzzapp.util.WIN_ANIMATION_OFF
+import com.example.muzzapp.util.*
 import org.junit.After
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -61,11 +59,11 @@ class MainActivityTests {
     fun sender_user_types_hello_displays_Hello_In_Chat_Window() {
         val scenario = launch(MainActivity::class.java)
 
-        onView(withId(R.id.edit_messagebox)).perform(typeText("Hello"), closeSoftKeyboard())
+        editMessageBox.typetext("Hello")
 
-        onView(withId(R.id.send_button)).perform(click())
+        sendButton.click()
 
-        onView(withId(R.id.chat_recycler_view))
+        chatRecyclerView
             .check(matches(hasDescendant(withText("Hello"))))
 
         scenario.close()
@@ -77,13 +75,12 @@ class MainActivityTests {
 
         //change to Other User
         uiDevice.pressMenu()
+        menuSwitchUser.click()
 
-        onView(withText("Switch User"))
-            .check(matches(isDisplayed()))
-            .perform(click())
+        onView(isAssignableFrom(Toolbar::class.java)).check(matches(hasDescendant(withText(R.string.frag_title_user_name_me))))
 
-        onView(withId(R.id.edit_messagebox)).perform(typeText("Hello"), closeSoftKeyboard())
-        onView(withId(R.id.send_button)).perform(click())
+        editMessageBox.typetext("Hello")
+        sendButton.click()
 
         onView(withText("Hello")).check(matches(isDisplayed()))
         scenario.close()

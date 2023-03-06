@@ -68,8 +68,8 @@ Please Note:-
    Live-Data updates.
    At this point in time, I haven't had the chance to investigate
 2. Toolbar Title: changes when the user switches the user. This currently has conflict
-   with [ChatFragmentTest]() (error: ClassCastException) due to FragmentActivity being casted as
-   MainActivity, and hence why the function setScreenTitle() of [ChatFragment.kt]() is commented
+   with [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) (error: ClassCastException) due to FragmentActivity being casted as
+   MainActivity, and hence why the function setScreenTitle() of [ChatFragment.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/chat/ChatFragment.kt) is commented
    out. This will work, but it will break the fragment test. Again to lack of time, I have not
    investigated it. 
 

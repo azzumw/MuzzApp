@@ -5,6 +5,7 @@ import androidx.annotation.VisibleForTesting
 import com.example.muzzapp.database.ChatDatabase
 import com.example.muzzapp.repository.Repository
 import com.example.muzzapp.repository.RepositoryImpl
+import kotlinx.coroutines.runBlocking
 
 object ServiceLocator {
 
@@ -39,12 +40,15 @@ object ServiceLocator {
     }
 
     @VisibleForTesting
-    fun resetRepository() {
+    fun resetRepository()  {
 
         synchronized(lock) {
             // Clear all data to avoid test pollution.
             database?.apply {
                 clearAllTables()
+            }
+            runBlocking {
+                repository?.clearMessages()
             }
             database = null
             repository = null

@@ -82,7 +82,6 @@ class MainActivityTests {
             .check(matches(isDisplayed()))
             .perform(click())
 
-
         onView(withId(R.id.edit_messagebox)).perform(typeText("Hello"), closeSoftKeyboard())
         onView(withId(R.id.send_button)).perform(click())
 

@@ -53,7 +53,7 @@ Please Note:-
   it is not ideal(ish). Although, (see issue section) this would not be an issue if I didn't face
   the issue mentioned.
   But certainly requires some time for investigation and further improvements to the architecture.
-- would implement ChatListAdapter.kt instead. I noticed the list update on UI was not very smooth,
+- would implement [ChatListAdapter.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/adapter/ChatListAdapter.kt) instead. I noticed the list update on UI was not very smooth,
   that's why I didn't use it as the main adapter.
 - would like to learn and implement Dagger/KOIN DI framework instead of ServiceLocator.
 

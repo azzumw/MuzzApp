@@ -34,6 +34,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 
 - App does not implement the up button
 - App does not have a profile picture on the toolbar yet
+- Does not take in to account orientation completely yet
 - EditText field does not auto-wrap message text
 - does not implement DI Framework like Dagger/KOIN; instead uses ServiceLocator
 
@@ -51,6 +52,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 - would spend more time on the UI
 - would have implemented the profile picture on the Toolbar
 - would try to copy the chat interface to the T! (I did use Figma eye dropper to get the exact chat bubble colours)
+- would implement [Save State mobdule for ViewMode](https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-savedstate) like I have implemented in one of my own projects [here](https://github.com/azzumw/CapstoneProject/blob/master/app/src/main/java/com/example/android/politicalpreparedness/representative/RepresentativeViewModel.kt)
 - when implementing tests, it kind of prompted me to change some of the implementation details,
   particularly how a message is sent. Currently, it uses 2-way databinding on the EditText field. From a testing
   perspective, in my opinion, it is not ideal(ish)[I could be wrong]. Although, (see issue section) this would not be an issue if I didn't face
@@ -69,6 +71,13 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 #### Issues:
 
 1. Switch button issue with ChatFragmentTest: This is currently in conflict with [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt)(error: NPE). When launching pure fragment (with no activity attached, switcher variable is set to null and hence NPE). Comment out ln 54-67 [ChatFragment.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/chat/ChatFragment.kt) to pass the test.
+
+
+## More Projects:
+- [Capstone Project](https://github.com/azzumw/CapstoneProject)
+- [Location Reminder App](https://github.com/azzumw/Project4)
+- [Asteroid Radar](https://github.com/azzumw/AsteroidRadar)
+- [Shoe Inventory](https://github.com/azzumw/Udacity22/tree/main/ShoeInventory)
 
 
 

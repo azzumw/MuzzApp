@@ -89,6 +89,4 @@ class MainActivityTests {
         onView(withText("Hello")).check(matches(isDisplayed()))
         scenario.close()
     }
-
-
 }

@@ -18,6 +18,8 @@ Please Note:-
 - Item sectioning
 
 
+![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+
 #### Limitations
 - App does not implement the up button
 - App does not have a profile picture on the toolbar yet

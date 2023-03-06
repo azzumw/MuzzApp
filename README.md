@@ -21,7 +21,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
       - [ChatViewModelTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/test/java/com/example/muzzapp/ui/chat/ChatViewModelTest.kt)
       - [ChatDatabaseTests](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/database/ChatDatabaseTests.kt)
   - Integration: 
-      - [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) - 1 test implemented, however, it faces issue with the setting up of title of the action bar from the fragment which is casting the activity prop value as MainActivity. 
+      - [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) - 1 test implemented however issue (see Issues section)
   - UI: 
       - [MainActivityTests](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/MainActivityTests.kt) - three UI tests.
 
@@ -50,7 +50,6 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 
 - would spend more time on the UI
 - would have implemented the profile picture on the Toolbar
-- would have implemented a switch button instead of a menu item to switch the users
 - would try to copy the chat interface to the T! (I did use Figma eye dropper to get the exact chat bubble colours)
 - when implementing tests, it kind of prompted me to change some of the implementation details,
   particularly how a message is sent. Currently, it uses 2-way databinding on the EditText field. From a testing
@@ -69,8 +68,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 
 #### Issues:
 
-1. Toolbar Title: changes when the user switches the user. This currently has conflict
-   with [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) (error: ClassCastException) due to FragmentActivity being casted as MainActivity, and hence why it is set to @Ignore. In order to make this test pass, you need to comment out Lines 64-71 in [ChatFragment.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/chat/ChatFragment.kt).
+1. Switch button issue with ChatFragmentTest: This is currently in conflict with [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt)(error: NPE). When launching pure fragment (with no activity attached, switcher variable is set to null and hence NPE). Comment out ln 54-67 [ChatFragment.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/chat/ChatFragment.kt) to pass the test.
 
 
 

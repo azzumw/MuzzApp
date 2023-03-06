@@ -7,10 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.muzzapp.ChatApplication
 import com.example.muzzapp.R
-import com.example.muzzapp.ServiceLocator
 import com.example.muzzapp.ui.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
-import com.example.muzzapp.repository.RepositoryImpl
 import com.example.muzzapp.ui.ChatViewModel
 import com.example.muzzapp.ui.ChatViewModelFactory
 import com.example.muzzapp.ui.User
@@ -20,12 +18,6 @@ class ChatFragment : Fragment() {
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
-
-//    private val chatViewModel: ChatViewModel by viewModels {
-//        ChatViewModelFactory(
-//            RepositoryImpl((requireActivity().application as ChatApplication).database.chatDao())
-//        )
-//    }
 
     private val chatViewModel: ChatViewModel by viewModels {
         ChatViewModelFactory(
@@ -64,6 +56,10 @@ class ChatFragment : Fragment() {
 
     }
 
+    /*
+    I have left this here just incase: this works fine if you uncomment it. However,
+    * this will break the integration test - ChatFragmentTest - displaysCorrectMessagesInChatWindow()
+    * */
     private fun setScreenTitle(channelId: Int) {
 //        if (channelId == User.ME.ordinal) {
 //            (activity as MainActivity).supportActionBar?.title =

@@ -10,6 +10,10 @@ import com.example.muzzapp.R
 import androidx.recyclerview.widget.ListAdapter
 import com.example.muzzapp.model.Message
 
+/*
+ *I didn't go ahead using this adapter due to some unsmooth update on the UI
+ * I didn't have time to investigate. I have not faced such issues in my previous projects
+ *  */
 class ChatListAdapter : ListAdapter<Message, ChatListAdapter.ChatListItemViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatListItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
@@ -27,7 +31,6 @@ class ChatListAdapter : ListAdapter<Message, ChatListAdapter.ChatListItemViewHol
 
     override fun getItemViewType(position: Int): Int {
         return getItem(position).sender
-//        return super.getItemViewType(position)
     }
 
     override fun onBindViewHolder(holder: ChatListItemViewHolder, position: Int) {

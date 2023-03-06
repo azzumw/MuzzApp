@@ -21,7 +21,11 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
   - Integration: [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) - 1 test implemented, however, it faces issue with the setting up of title of the action bar from the fragment which is casting the activity prop value as MainActivity. 
   - UI: [](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/MainActivityTests.kt)) - two UI tests.
 
-![](/app/muzz_sc.png "")
+<p align="center">
+  <img src="https://github.com/azzumw/MuzzApp/blob/master/app/muzz_sc.png" />
+</p>
+
+
 
 #### Limitations
 

@@ -9,3 +9,7 @@ data class Message(
     var sender: Int = 0,
     @PrimaryKey val timestamp: Long
 )
+
+/*
+probably not an ideal primary key. would use auto-gen instead.
+* */

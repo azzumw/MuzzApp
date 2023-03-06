@@ -52,14 +52,6 @@ class ChatViewModel(private val repository: Repository) : ViewModel() {
             repository.clearMessages()
         }
     }
-
-    //Facing issue with unit test, please don't mark me down for leaving below function.
-    @VisibleForTesting
-    fun sendMessage(message: String, user: Int) {
-        messageText.value = message
-        deliveryChannel = user
-        insertMessage()
-    }
 }
 
 class ChatViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {

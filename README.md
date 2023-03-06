@@ -6,7 +6,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 
 #### Highlights:
 
-- MVVM | Repository pattern | Room | Coroutines | Databinding | Testing (unit, integration and UI)
+- MVVM | Repository pattern | Room | Coroutines | Databinding | Testing
 
 
 #### What's implemented?
@@ -24,7 +24,6 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 <p align="center">
   <img src="https://github.com/azzumw/MuzzApp/blob/master/app/muzz_sc.png" />
 </p>
-
 
 
 #### Limitations
@@ -46,16 +45,14 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 
 #### Given More Time:
 
+- would spend more time on the UI
 - would have implemented the profile picture on the Toolbar
 - would have implemented a switch button instead of a menu item to switch the users
 - would try to copy the chat interface to the T!
 - when implementing tests, it kind of prompted me to change some of the implementation details,
-  particularly
-  how a message is sent. Currently, it uses 2-way databinding on the EditText field. From a testing
-  perspective
-  it is not ideal(ish). Although, (see issue section) this would not be an issue if I didn't face
-  the issue mentioned.
-  But certainly requires some time for investigation and further improvements to the architecture.
+  particularly how a message is sent. Currently, it uses 2-way databinding on the EditText field. From a testing
+  perspective, in my opinion, it is not ideal(ish)[I could be wrong]. Although, (see issue section) this would not be an issue if I didn't face
+  the issue mentioned. But certainly requires some time for investigation and further improvements to the architecture.
 - I did try to implement [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter) instead. However,I noticed the list update on UI was not very smooth,that's why I have removed it from my final version of the app. 
 - would have liked to learn and implement Dagger/KOIN DI framework instead of ServiceLocator.
 

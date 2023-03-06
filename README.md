@@ -37,22 +37,21 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 #### Assumptions
 
 - assuming I will be judged in accordance with the Graduate rubric, regardless I wanted to give
-  something better than asked for i.e. persistent storage
-  and 2-way databinding for live observation. I wanted to showcase some of the knowledge/skills I
-  acquired during my time at Udacity. I certainly feel - I am a Junior (not Mid), as you would be
-  able to tell from eye-balling my code.
-
+  something better than asked for i.e. persistent storageand 2-way databinding for live observation. 
+  I wanted to showcase some of the knowledge/skills I acquired during my time at Udacity. I certainly 
+  feel - I am a Junior (not Mid), as you would be able to tell from eye-balling my code.
+- Although, not required but I went ahead with implementing Repository pattern to help me test my viewmodel, repository and database in isolation. 
+- assuming, I have managed to implement databinding, room persistence library, moderator will forgive me on my short comings on UI implementation, and some code smell around switching user. I feel I may be able simplify it further. 
 
 #### Given More Time:
 
 - would spend more time on the UI
 - would have implemented the profile picture on the Toolbar
 - would try to copy the chat interface to the T! (I did use Figma eye dropper to get the exact chat bubble colours)
-- would implement [Save State mobdule for ViewMode](https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-savedstate) like I have implemented in one of my own projects [here](https://github.com/azzumw/CapstoneProject/blob/master/app/src/main/java/com/example/android/politicalpreparedness/representative/RepresentativeViewModel.kt)
+- would implement [Save State module for ViewMode](https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-savedstate) like I have implemented in one of my own projects [here](https://github.com/azzumw/CapstoneProject/blob/master/app/src/main/java/com/example/android/politicalpreparedness/representative/RepresentativeViewModel.kt)
 - when implementing tests, it kind of prompted me to change some of the implementation details,
   particularly how a message is sent. Currently, it uses 2-way databinding on the EditText field. From a testing
-  perspective, in my opinion, it is not ideal(ish)[I could be wrong]. Although, (see issue section) this would not be an issue if I didn't face
-  the issue mentioned. But certainly requires some time for investigation and further improvements to the architecture.
+  perspective, in my opinion, it is not ideal(ish)[I could be wrong]. I would like to have more control over the arguments I am passing. Certainly requires some time for investigation and further improvements to the architecture.
 - I did try to implement [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter) instead. However,I noticed the list update on UI was not very smooth,that's why I have removed it from my final version of the app. 
 - would have liked to implement Dagger/KOIN DI framework instead of ServiceLocator.
 - written more tests

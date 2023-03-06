@@ -24,13 +24,14 @@ Please Note:-
 - Testing: very limited testing:
     - I have not covered unit testing (see Issue: 1)
     - 1 x integration tests (see Issue: 2)
-    - 2 - Espresso UI tests
+    - 2 x Espresso UI tests
 - does not implement DI Framework like Dagger/KOIN; instead uses ServiceLocator
 
 
 #### Assumptions
 - assuming I will be judged in accordance with the Graduate rubric, regardless I wanted to give something better than asked for i.e. persistent storage
 and 2-way databinding for live observation. I wanted to showcase some of the knowledge/skills I acquired during my time at Udacity. I certainly feel - I am a Junior (not Mid), as you would be able to tell from eye-balling my code. 
+- assuming testing was not required, hence did not attempt to write many tests (due to lack of time as well)
 
 
 #### Given More Time: 

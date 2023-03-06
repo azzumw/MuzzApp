@@ -25,10 +25,6 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
   - UI: 
       - [MainActivityTests](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/MainActivityTests.kt) - three UI tests.
 
-<p align="center">
-  <img src="https://github.com/azzumw/MuzzApp/blob/master/app/muzz_sc.png" />
-</p>
-
 
 #### Limitations
 

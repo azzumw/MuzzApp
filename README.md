@@ -70,7 +70,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 #### Issues:
 
 1. Toolbar Title: changes when the user switches the user. This currently has conflict
-   with [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) (error: ClassCastException) due to FragmentActivity being casted as MainActivity, and hence why the function setScreenTitle() of [ChatFragment.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/chat/ChatFragment.kt) is commented out. This will work, but it will break the fragment test. Again due to the lack of time, I have not investigated it. 
+   with [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) (error: ClassCastException) due to FragmentActivity being casted as MainActivity, and hence why it is set to @Ignore. In order to make this test pass, you need to comment out Lines 64-71 in [ChatFragment.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/chat/ChatFragment.kt).
 
 
 

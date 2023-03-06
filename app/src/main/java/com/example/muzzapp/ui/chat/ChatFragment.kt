@@ -40,8 +40,10 @@ class ChatFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_chat, container, false)
 
-        binding.lifecycleOwner = this.viewLifecycleOwner
-        binding.viewModel = chatViewModel
+        binding.apply {
+            lifecycleOwner = this@ChatFragment.viewLifecycleOwner
+            viewModel = chatViewModel
+        }
 
         setScreenTitle(deliveryChannel)
 

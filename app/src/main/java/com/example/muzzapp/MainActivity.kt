@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.setNavigationIcon(R.drawable.baseline_arrow_back)
 
         setContentView(binding.root)
 

@@ -95,12 +95,11 @@ class ChatAdapter(private val context: Context) :
                 } else {
                     setChatBubbleWithoutTail(getItemViewType(position), holder)
                 }
-
             }
 
             /*
             when the previous message was sent over an hour ago, show the day and time,
-            else keep the day time view invisible
+            else keep the day time view to GONE
             * */
             when {
                 holder.layoutPosition >= 2 -> {
@@ -116,24 +115,20 @@ class ChatAdapter(private val context: Context) :
         }
     }
 
-    override fun getItemCount(): Int {
-        //because of the header, this needed to be increased
-        return messages.size + 1
-    }
+    override fun getItemCount(): Int = messages.size + 1
 
     override fun getItemViewType(position: Int): Int =
         if (position == 0) HEADER_TYPE else messages[position - 1].sender
 
-
     private fun setChatBubbleWithTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) =
-        if (viewType == 0) {
+        if (viewType == MESSAGE_SEND_TYPE) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble_tail)
         } else {
             setDrawable(holder, R.drawable.bg_received_chat_bubble_tail)
         }
 
     private fun setChatBubbleWithoutTail(viewType: Int, holder: ChatAdapter.MessageViewHolder) {
-        if (viewType == 0) {
+        if (viewType == MESSAGE_SEND_TYPE) {
             setDrawable(holder, R.drawable.bg_send_chat_bubble)
         } else {
             setDrawable(holder, R.drawable.bg_received_chat_bubble)

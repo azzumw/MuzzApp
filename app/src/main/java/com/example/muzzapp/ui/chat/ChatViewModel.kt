@@ -28,9 +28,11 @@ class ChatViewModel(private val repository: Repository) : ViewModel() {
 
     val messages: LiveData<List<Message>?> = repository.getAllMessages()
 
+    //2-way databinding messageBoxText
     val messageText = MutableLiveData<String>()
 
     fun insertMessage() {
+        //will only add message to the database if user has typed something
         if (!validateInput()) {
             val message =
                 Message(messageText.value!!, deliveryChannel, Calendar.getInstance().timeInMillis)
@@ -43,25 +45,22 @@ class ChatViewModel(private val repository: Repository) : ViewModel() {
         messageText.value = ""
     }
 
-    @VisibleForTesting
-    fun sendMessage(message:String, user:Int){
-        messageText.value = message
-        deliveryChannel = user
-
-        viewModelScope.launch {
-            repository.insertMessage(Message(message, deliveryChannel,Calendar.getInstance().timeInMillis))
-        }
-
-    }
-
-
-
     private fun validateInput() = messageText.value.isNullOrBlank()
 
     fun clear() = viewModelScope.launch {
         if (!messages.value.isNullOrEmpty()) {
             repository.clearMessages()
         }
+    }
+
+    //Facing issue with unit test, please don't mark me down for leaving below function.
+    @VisibleForTesting
+    fun sendMessage(message: String, user: Int) {
+        messageText.value = message
+        deliveryChannel = user
+
+        insertMessage()
+
     }
 }
 

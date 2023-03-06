@@ -1,6 +1,6 @@
 # MuzzApp: Graduate Android Developer
 
-Graduate Android Developer Task: to develop a similar chat interface to that of Muzz app.
+Graduate Android Developer Task: to develop a similar chat interface to that of Muzz app. HAPPY CODING and REVIEWING! =]
 
 ![]()
 

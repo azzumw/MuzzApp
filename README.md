@@ -8,7 +8,6 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 
 - MVVM | Repository pattern | Room | Coroutines | Databinding | Testing (unit, integration and UI)
 
-Please Note:-
 
 #### What's implemented?
 
@@ -17,6 +16,10 @@ Please Note:-
 - Message has a tail if 1) most recent 2) message after it is sent by the other user 3) message
   after it was sent after 20 seconds.
 - Item sectioning
+- Testing:
+  - Unit: [ChatViewModelTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/test/java/com/example/muzzapp/ui/chat/ChatViewModelTest.kt) - was not able to implement due to an issue (See the Issue section)
+  - Integration: [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) - 1 test implemented, however, it faces issue with the setting up of title of the action bar from the fragment which is casting the activity prop value as MainActivity. 
+  - UI: [](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/MainActivityTests.kt)) - two UI tests.
 
 ![](/app/muzz_sc.png "")
 
@@ -25,10 +28,6 @@ Please Note:-
 - App does not implement the up button
 - App does not have a profile picture on the toolbar yet
 - EditText field does not auto-wrap message text
-- Testing: very limited testing:
-    - I have not covered unit testing (see Issue: 1)
-    - 1 x integration tests (see Issue: 2)
-    - 2 x Espresso UI tests
 - does not implement DI Framework like Dagger/KOIN; instead uses ServiceLocator
 
 #### Assumptions
@@ -53,9 +52,8 @@ Please Note:-
   it is not ideal(ish). Although, (see issue section) this would not be an issue if I didn't face
   the issue mentioned.
   But certainly requires some time for investigation and further improvements to the architecture.
-- would implement [ChatListAdapter.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/adapter/ChatListAdapter.kt) instead. I noticed the list update on UI was not very smooth,
-  that's why I didn't use it as the main adapter.
-- would like to learn and implement Dagger/KOIN DI framework instead of ServiceLocator.
+- I did try to implement [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter) instead. However,I noticed the list update on UI was not very smooth,that's why I have removed it from my final version of the app. 
+- would have liked to learn and implement Dagger/KOIN DI framework instead of ServiceLocator.
 
 #### Lessons Learnt:
 
@@ -72,7 +70,7 @@ Please Note:-
 2. Toolbar Title: changes when the user switches the user. This currently has conflict
    with [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) (error: ClassCastException) due to FragmentActivity being casted as
    MainActivity, and hence why the function setScreenTitle() of [ChatFragment.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/chat/ChatFragment.kt) is commented
-   out. This will work, but it will break the fragment test. Again to lack of time, I have not
+   out. This will work, but it will break the fragment test. Again due to the laack of time, I have not
    investigated it. 
 
 

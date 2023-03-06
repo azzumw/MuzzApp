@@ -19,7 +19,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 - Testing:
   - Unit: [ChatViewModelTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/test/java/com/example/muzzapp/ui/chat/ChatViewModelTest.kt)
   - Integration: [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) - 1 test implemented, however, it faces issue with the setting up of title of the action bar from the fragment which is casting the activity prop value as MainActivity. 
-  - UI: [](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/MainActivityTests.kt)) - two UI tests.
+  - UI: [MainActivityTests](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/MainActivityTests.kt) - three UI tests.
 
 <p align="center">
   <img src="https://github.com/azzumw/MuzzApp/blob/master/app/muzz_sc.png" />
@@ -40,8 +40,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
   and 2-way databinding for live observation. I wanted to showcase some of the knowledge/skills I
   acquired during my time at Udacity. I certainly feel - I am a Junior (not Mid), as you would be
   able to tell from eye-balling my code.
-- assuming testing was not required, hence did not attempt to write many tests (due to lack of time
-  as well)
+
 
 #### Given More Time:
 
@@ -54,7 +53,8 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
   perspective, in my opinion, it is not ideal(ish)[I could be wrong]. Although, (see issue section) this would not be an issue if I didn't face
   the issue mentioned. But certainly requires some time for investigation and further improvements to the architecture.
 - I did try to implement [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter) instead. However,I noticed the list update on UI was not very smooth,that's why I have removed it from my final version of the app. 
-- would have liked to learn and implement Dagger/KOIN DI framework instead of ServiceLocator.
+- would have liked to implement Dagger/KOIN DI framework instead of ServiceLocator.
+- written more tests
 
 #### Lessons Learnt:
 
@@ -66,7 +66,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 #### Issues:
 
 1. Toolbar Title: changes when the user switches the user. This currently has conflict
-   with [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) (error: ClassCastException) due to FragmentActivity being casted as MainActivity, and hence why the function setScreenTitle() of [ChatFragment.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/chat/ChatFragment.kt) is commented out. This will work, but it will break the fragment test. Again due to the laack of time, I have not investigated it. 
+   with [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) (error: ClassCastException) due to FragmentActivity being casted as MainActivity, and hence why the function setScreenTitle() of [ChatFragment.kt](https://github.com/azzumw/MuzzApp/blob/master/app/src/main/java/com/example/muzzapp/ui/chat/ChatFragment.kt) is commented out. This will work, but it will break the fragment test. Again due to the lack of time, I have not investigated it. 
 
 
 

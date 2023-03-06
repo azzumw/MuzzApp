@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.muzzapp.ChatApplication
+import com.example.muzzapp.MainActivity
 import com.example.muzzapp.R
 import com.example.muzzapp.ui.adapter.ChatAdapter
 import com.example.muzzapp.databinding.FragmentChatBinding
@@ -57,18 +58,17 @@ class ChatFragment : Fragment() {
     }
 
     /*
-    I have left this here just incase: this works fine if you uncomment it. However,
-    * this will break the integration test - ChatFragmentTest - displaysCorrectMessagesInChatWindow()
-    * */
+    If you wish to run ChatFragmentTest you need to uncomment it.
+    */
     private fun setScreenTitle(channelId: Int) {
-//        if (channelId == User.ME.ordinal) {
-//            (activity as MainActivity).supportActionBar?.title =
-//                getString(R.string.frag_title_user_name_you)
-//
-//        } else {
-//            (activity as MainActivity).supportActionBar?.title =
-//                getString(R.string.frag_title_user_name_me)
-//        }
+        if (channelId == User.ME.ordinal) {
+            (activity as MainActivity).supportActionBar?.title =
+                getString(R.string.frag_title_user_name_you)
+
+        } else {
+            (activity as MainActivity).supportActionBar?.title =
+                getString(R.string.frag_title_user_name_me)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

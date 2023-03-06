@@ -52,7 +52,7 @@ class MainActivityTests {
     fun isToolbarTitleDisplayed() {
         val scenario = launch(MainActivity::class.java)
 
-        onView(isAssignableFrom(Toolbar::class.java)).check(matches(hasDescendant(withText(R.string.app_name))))
+        onView(isAssignableFrom(Toolbar::class.java)).check(matches(hasDescendant(withText(R.string.frag_title_user_name_you))))
 
         scenario.close()
     }

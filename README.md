@@ -51,7 +51,7 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
 - would spend more time on the UI
 - would have implemented the profile picture on the Toolbar
 - would have implemented a switch button instead of a menu item to switch the users
-- would try to copy the chat interface to the T!
+- would try to copy the chat interface to the T! (I did use Figma eye dropper to get the exact chat bubble colours)
 - when implementing tests, it kind of prompted me to change some of the implementation details,
   particularly how a message is sent. Currently, it uses 2-way databinding on the EditText field. From a testing
   perspective, in my opinion, it is not ideal(ish)[I could be wrong]. Although, (see issue section) this would not be an issue if I didn't face

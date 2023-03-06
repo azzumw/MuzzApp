@@ -47,7 +47,7 @@ class ChatViewModel(private val repository: Repository) : ViewModel() {
 
     private fun validateInput() = messageText.value.isNullOrBlank()
 
-    fun clear() = viewModelScope.launch {
+    fun clearChat() = viewModelScope.launch {
         if (!messages.value.isNullOrEmpty()) {
             repository.clearMessages()
         }
@@ -58,9 +58,7 @@ class ChatViewModel(private val repository: Repository) : ViewModel() {
     fun sendMessage(message: String, user: Int) {
         messageText.value = message
         deliveryChannel = user
-
         insertMessage()
-
     }
 }
 

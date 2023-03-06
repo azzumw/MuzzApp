@@ -78,7 +78,7 @@ class ChatFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.clear_chat_id -> {
-                chatViewModel.clear()
+                chatViewModel.clearChat()
                 true
             }
             R.id.switch_user_id -> {

@@ -42,11 +42,7 @@ class ChatViewModelTest{
 
     @Before
     fun setUp() {
-        val messages = listOf(
-            Message("Hello", SENDER_USER,Calendar.getInstance().timeInMillis),
-            Message("How are you?", SENDER_USER,Calendar.getInstance().timeInMillis),
-            Message("Are you there?", SENDER_USER,Calendar.getInstance().timeInMillis),
-        )
+
         repository = FakeRepository()
     }
 
@@ -57,7 +53,7 @@ class ChatViewModelTest{
 
 
     @Test
-    fun `when message is inserted messages list is updated`() = mainCoroutineRule.runBlockingTest {
+    fun `insertMessage inserts message and messages list is updated`() = mainCoroutineRule.runBlockingTest {
         // GIVEN - a fresh viewModel
         chatViewModel = ChatViewModel(repository)
 
@@ -66,11 +62,36 @@ class ChatViewModelTest{
         MatcherAssert.assertThat(messages, `is`(emptyList()))
 
         // WHEN : a message is inserted
-        chatViewModel.sendMessage("Hello", SENDER_USER)
+        chatViewModel.messageText.value = "Hello"
+        chatViewModel.insertMessage()
+//        chatViewModel.sendMessage("Hello", SENDER_USER)
 
         //THEN - verify the message is successfully inserted in the database
+        // and messages livedata is updated
         val resultMessage = chatViewModel.messages.getOrAwaitValue()
         MatcherAssert.assertThat(resultMessage?.size, `is`(1))
+
+    }
+
+    @Test
+    fun `clearChat clears the messages list`() = mainCoroutineRule.runBlockingTest{
+        // GIVEN - a fresh viewModel
+        chatViewModel = ChatViewModel(repository)
+
+        // with a message in the repository
+        chatViewModel.messageText.value = "Hello"
+        chatViewModel.insertMessage()
+
+        // check the messages list is not empty
+        val messages = chatViewModel.messages.getOrAwaitValue()
+        MatcherAssert.assertThat(messages?.size, `is`(1))
+
+        // WHEN - chat is cleared
+        chatViewModel.clearChat()
+
+        // THEN - verify messages list is empty
+        val result = chatViewModel.messages.getOrAwaitValue()
+        MatcherAssert.assertThat(result?.size, `is`(0))
 
     }
 }

@@ -64,7 +64,7 @@ Please Note:-
 
 #### Issues:
 
-1. Unit Testing: while implementing [ChatViewModelTest]() I am facing an issue with possibly
+1. Unit Testing: while implementing [ChatViewModelTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/test/java/com/example/muzzapp/ui/chat/ChatViewModelTest.kt) I am facing an issue with possibly
    Live-Data updates.
    At this point in time, I haven't had the chance to investigate
 2. Toolbar Title: changes when the user switches the user. This currently has conflict

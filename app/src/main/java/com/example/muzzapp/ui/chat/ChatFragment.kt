@@ -2,6 +2,7 @@ package com.example.muzzapp.ui.chat
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -45,7 +46,25 @@ class ChatFragment : Fragment() {
             viewModel = chatViewModel
         }
 
-        setScreenTitle(deliveryChannel)
+        /*
+     * this has issue with Integration test ChatFragmentTest
+     * Because there is no activity attached, hence it throw NPE exception in the test
+     * You would have to comment out ln 49-67 to run the test
+     * */
+        val switcher = requireActivity().findViewById<SwitchCompat>(R.id.user_switch)
+
+        switcher.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                (activity as MainActivity).supportActionBar?.title =
+                    getString(R.string.frag_title_user_name_me)
+                deliveryChannel = User.ME.switch.ordinal
+            } else {
+
+                (activity as MainActivity).supportActionBar?.title =
+                    getString(R.string.frag_title_user_name_you)
+                deliveryChannel = User.YOU.switch.ordinal
+            }
+        }
 
         return binding.root
     }
@@ -59,19 +78,6 @@ class ChatFragment : Fragment() {
 
     }
 
-    /*
-    If you wish to run ChatFragmentTest you need to uncomment it.
-    */
-    private fun setScreenTitle(channelId: Int) {
-        if (channelId == User.ME.ordinal) {
-            (activity as MainActivity).supportActionBar?.title =
-                getString(R.string.frag_title_user_name_you)
-
-        } else {
-            (activity as MainActivity).supportActionBar?.title =
-                getString(R.string.frag_title_user_name_me)
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)
@@ -81,16 +87,6 @@ class ChatFragment : Fragment() {
         return when (item.itemId) {
             R.id.clear_chat_id -> {
                 chatViewModel.clearChat()
-                true
-            }
-            R.id.switch_user_id -> {
-                deliveryChannel = if (deliveryChannel == User.ME.ordinal) {
-                    setScreenTitle(User.YOU.ordinal)
-                    User.ME.switch.ordinal
-                } else {
-                    setScreenTitle(User.ME.ordinal)
-                    User.YOU.switch.ordinal
-                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

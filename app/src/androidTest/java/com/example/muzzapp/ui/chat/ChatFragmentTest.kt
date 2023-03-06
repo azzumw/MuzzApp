@@ -47,7 +47,7 @@ class ChatFragmentTest {
         ServiceLocator.resetRepository()
     }
 
-    @Ignore("issue with Fragment Activity and MainActivity Cast in ChatFragment::setScreenTitle")
+    @Ignore("issue: NPE thrown because of the way switch is implemented currently.")
     @Test
     fun displaysCorrectMessagesInChatWindow() = runTest {
         // GIVEN - list of messages
@@ -62,10 +62,6 @@ class ChatFragmentTest {
         repository.insertMessage(messages.last())
 
         // WHEN - ChatFragment is launched
-        /*
-        Issue with FragmentActivity casting to MainActivity(ln 64-71)
-        if you comment out ln 64-71, and then run this test, this will pass
-        */
         launchFragmentInContainer<ChatFragment>(null, com.example.muzzapp.R.style.Theme_MuzzApp)
 
         // THEN - verify the correct messages are shown in the chat Window

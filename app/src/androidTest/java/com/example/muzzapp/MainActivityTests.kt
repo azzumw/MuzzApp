@@ -74,7 +74,6 @@ class MainActivityTests {
         val scenario = launch(MainActivity::class.java)
 
         //change to Other User
-        uiDevice.pressMenu()
         menuSwitchUser.click()
 
         onView(isAssignableFrom(Toolbar::class.java)).check(matches(hasDescendant(withText(R.string.frag_title_user_name_me))))

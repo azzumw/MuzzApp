@@ -17,9 +17,13 @@ Graduate Android Developer Task: to develop a similar chat interface to that of 
   after it was sent after 20 seconds.
 - Item sectioning
 - Testing:
-  - Unit: [ChatViewModelTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/test/java/com/example/muzzapp/ui/chat/ChatViewModelTest.kt)
-  - Integration: [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) - 1 test implemented, however, it faces issue with the setting up of title of the action bar from the fragment which is casting the activity prop value as MainActivity. 
-  - UI: [MainActivityTests](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/MainActivityTests.kt) - three UI tests.
+  - Unit: 
+      - [ChatViewModelTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/test/java/com/example/muzzapp/ui/chat/ChatViewModelTest.kt)
+      - [ChatDatabaseTests](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/database/ChatDatabaseTests.kt)
+  - Integration: 
+      - [ChatFragmentTest](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/ui/chat/ChatFragmentTest.kt) - 1 test implemented, however, it faces issue with the setting up of title of the action bar from the fragment which is casting the activity prop value as MainActivity. 
+  - UI: 
+      - [MainActivityTests](https://github.com/azzumw/MuzzApp/blob/master/app/src/androidTest/java/com/example/muzzapp/MainActivityTests.kt) - three UI tests.
 
 <p align="center">
   <img src="https://github.com/azzumw/MuzzApp/blob/master/app/muzz_sc.png" />

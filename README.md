@@ -2,7 +2,6 @@
 
 Graduate Android Developer Task: to develop a similar chat interface to that of Muzz app.
 
-//Space for video
 ![]()
 
 #### Highlights:

@@ -44,6 +44,7 @@ Please Note:-
 
 - would have implemented the profile picture on the Toolbar
 - would have implemented a switch button instead of a menu item to switch the users
+- would try to copy the chat interface to the T!
 - when implementing tests, it kind of prompted me to change some of the implementation details,
   particularly
   how a message is sent. Currently, it uses 2-way databinding on the EditText field. From a testing

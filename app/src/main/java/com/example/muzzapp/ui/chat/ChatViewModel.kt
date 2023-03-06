@@ -36,6 +36,7 @@ class ChatViewModel(private val repository: Repository) : ViewModel() {
             val message =
                 Message(messageText.value!!, deliveryChannel, Calendar.getInstance().timeInMillis)
 
+            //launches coroutine for background task
             viewModelScope.launch {
                 repository.insertMessage(message)
             }

@@ -24,6 +24,7 @@ Please Note:-
 
 - App does not implement the up button
 - App does not have a profile picture on the toolbar yet
+- EditText field does not auto-wrap message text
 - Testing: very limited testing:
     - I have not covered unit testing (see Issue: 1)
     - 1 x integration tests (see Issue: 2)

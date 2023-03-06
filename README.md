@@ -18,7 +18,7 @@ Please Note:-
 - Item sectioning
 
 
-![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+![](/app/muzz_sc.png "")
 
 #### Limitations
 - App does not implement the up button

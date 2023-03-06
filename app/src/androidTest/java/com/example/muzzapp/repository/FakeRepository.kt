@@ -12,8 +12,8 @@ class FakeRepository(private var list: MutableList<Message>? = mutableListOf()) 
 
     override suspend fun insertMessage(message: Message) {
 
-            list?.add(message)
-            _messages.value = list
+        list?.add(message)
+        _messages.value = list
 
     }
 
@@ -23,13 +23,4 @@ class FakeRepository(private var list: MutableList<Message>? = mutableListOf()) 
 
     override fun getAllMessages(): LiveData<List<Message>?> = messages
 
-
-    override suspend fun getRecentMessage(): Message? {
-        return messages.value?.last()
-    }
-
-    fun addAllMessages(mListMessages:List<Message>){
-        list?.addAll(mListMessages)
-        _messages.value = list
-    }
 }

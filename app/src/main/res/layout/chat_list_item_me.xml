@@ -11,16 +11,17 @@
         android:id="@+id/day_time_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/chat_text_bubble_item"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/chat_text_bubble_item">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/day_text_view"
-            android:textStyle="bold"
-            style="@style/day_timestamp_style" />
+            style="@style/day_timestamp_style"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/timestamp_text_view"
             style="@style/day_timestamp_style" />

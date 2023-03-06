@@ -21,10 +21,6 @@ interface ChatDao {
     suspend fun clearMessages()
 
     @VisibleForTesting
-    @Query("select * from message limit 1")
-    suspend fun getRecentMessage(): Message?
-
-    @VisibleForTesting
     @Insert
     suspend fun addAllMessages(list: List<Message>)
 }

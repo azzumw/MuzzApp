@@ -1,6 +1,5 @@
 package com.example.muzzapp
 
-import android.os.SystemClock
 import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -20,19 +19,12 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.BeforeClass
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 @RunWith(AndroidJUnit4::class)
 class MainActivityTests {
 
     companion object {
-        private lateinit var uiDevice: UiDevice
 
-        //waiting times
-        private const val ONE_SEC = 1000L
+        private lateinit var uiDevice: UiDevice
 
         @BeforeClass
         @JvmStatic
@@ -90,8 +82,6 @@ class MainActivityTests {
             .check(matches(isDisplayed()))
             .perform(click())
 
-        SystemClock.sleep(2000)
-
 
         onView(withId(R.id.edit_messagebox)).perform(typeText("Hello"), closeSoftKeyboard())
         onView(withId(R.id.send_button)).perform(click())
@@ -99,5 +89,6 @@ class MainActivityTests {
         onView(withText("Hello")).check(matches(isDisplayed()))
         scenario.close()
     }
+
 
 }

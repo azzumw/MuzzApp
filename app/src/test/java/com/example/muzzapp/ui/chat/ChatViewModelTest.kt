@@ -2,7 +2,6 @@ package com.example.muzzapp.ui.chat
 
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.muzzapp.model.Message
 import com.example.muzzapp.repository.FakeRepository
 import com.example.muzzapp.repository.Repository
 import com.example.muzzapp.ui.ChatViewModel
@@ -17,8 +16,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.Calendar
-
 
 @ExperimentalCoroutinesApi
 class ChatViewModelTest{
